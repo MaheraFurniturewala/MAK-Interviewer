@@ -1,0 +1,45 @@
+{
+  "name": "mak-interviewer",
+  "version": "1.0.0",
+  "description": "A site to make coding interviewers easier",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avinash-Singh-G/MAK-Interviewer.git"
+  },
+  "keywords": [
+    "code",
+    "interview",
+    "chat",
+    "video",
+    "editor"
+  ],
+  "author": "Avinash Krina Mahera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Avinash-Singh-G/MAK-Interviewer/issues"
+  },
+  "homepage": "https://github.com/Avinash-Singh-G/MAK-Interviewer#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^5.13.5",
+    "node-sass-middleware": "^0.11.0",
+    "nodemailer": "^6.6.3",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

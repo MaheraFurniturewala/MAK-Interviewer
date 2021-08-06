@@ -9,6 +9,7 @@ const MongoStore=require('connect-mongo')(session);
 const googleStrategy = require('./config/passport-google-oauth2.0.js');
 const sassMiddleware=require('node-sass-middleware');
 const flash = require('connect-flash');
+const http = require('http');
 
 //setting up scss middleware
 app.use(sassMiddleware({

@@ -42,36 +42,24 @@ module.exports.verified = function(req,res){
 // get the sign up data
 module.exports.create = async function(req, res){
     if (req.body.password != req.body.confirm_password){
+        req.flash('error','Passwords do not match');
         return res.redirect('back');
     }
 
-    // let user = await User.findOne({email: req.body.email}, function(err, user){
-    //     if(err){console.log('error in finding user in signing up'); return}
-
-    //     if (!user){
-    //         User.create(req.body, function(err, user){
-    //             if(err){console.log('error in creating user while signing up'); return}
-    //             userMailer.newUser(user);
-    //             return res.redirect('/users/verify');
-    //         });
-    //     }else{
-    //         return res.redirect('back');
-    //     }
-
-    // });
     try {
         let user = await User.findOne({email:req.body.email});
         if(!user){
             let user = await new User(req.body);
             user = await user.save();
+            req.flash('success','You have Signed Up!')
             userMailer.newUser(user);
             return res.redirect('/users/verify');
         }else{
-            console.log("User exists");
+            req.flash('error','This user exists')
             res.redirect('back');
         }
     } catch (error) {
-        console.log("error in signing up:", error);
+        req.flash('error','Error in signing Up')
         return res.redirect('back');
     }
    
@@ -79,7 +67,7 @@ module.exports.create = async function(req, res){
 
 // sign in and create a session for the user
 module.exports.createSession = function(req, res){
-    req.flash('success','Logged in successfully!')
+    req.flash('success','Logged in successfully!');
         return res.redirect('/');
     
 }

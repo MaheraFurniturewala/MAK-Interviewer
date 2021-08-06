@@ -1,6 +1,43 @@
-<h1>
-    Thank you for signing up!
-</h1>
 
-<p>To continue further click on:</p>
-<button><a id="verified" href="http://localhost:8000/users/verify/<%= user._id %>">Verify Email</a></button>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="email.css" rel="stylesheet">
+  
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            MAK Interviewer
+          </a>
+        </div>
+      </nav>
+      <div style="padding: 8% 20% 5% 20%">
+          <p>Dear <b><%= user.name %></b>,<br><br>Please verify your email address to complete your MAK Interviewer account.</p>
+          <a id="verified" href="http://localhost:8000/users/verify/<%= user._id %>"></a>
+          <button type="button" class="btn btn-secondary btn-lg" style="margin: auto; display: flex; justify-content: center; display: grid;">Verify Email Account</button>
+          <br>
+          <p>This link will expire in 24 hours. If it has expired, try to request <a>a new verification email.</a></p>
+          <p>We received a request for a MAK Interviewer Account using your email address. If you did not make his request, email at:<address>interviewermak@gmail.com</address></p>
+          <br>
+          <p>Thank You,</p>
+          <p><b>The MAK Interviewer Account Team</b></p>
+      </div>
+      <!-- Footer -->
+<footer class="bg-dark text-center text-white" style=" position:fixed;
+bottom:0;
+width:100%;
+height: 10%;">
+    <!-- Grid container -->
+    <div class="container">
+      <!-- Section: Text -->
+      <section>
+        <p style="padding-top:2% ;padding-left:5%; padding-right:5%;">
+          Copyright @2021, MAK Interviewer and/or its affiliates. All rights reserved.
+        </p>
+      </section>
+      <!-- Section: Text -->
+    </div>
+    <!-- Grid container -->
+  
+  </footer>
+  <!-- Footer -->
+

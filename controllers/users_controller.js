@@ -4,6 +4,7 @@ const userMailer = require('../mailers/user_signup_mailer');
 
 
 
+
 module.exports.signIn = function(req, res){
 
     if (req.isAuthenticated()){

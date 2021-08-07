@@ -21,7 +21,9 @@ function(accessToken, refreshToken, profile, done){
             User.create({
                 name: profile.displayName,
                 email: profile.emails[0].value,
-                password: crypto.randomBytes(20).toString('hex')
+                password: crypto.randomBytes(20).toString('hex'),
+                isVerified: true,
+                authVia:"google"
             },function(err,user){
                 if(err){
                     console.log('error in creating user google strategy-passport', err);

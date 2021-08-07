@@ -47,7 +47,13 @@ module.exports.create = async function(req, res){
     try {
         let user = await User.findOne({email:req.body.email});
         if(!user){
-            let user = await new User(req.body);
+            let user = await new User({
+                name:req.body.name,
+                email:req.body.email,
+                password:req.body.password,
+                authVia: "local",
+                isVerified:false
+            });
             user = await user.save();
             req.flash('success','You have Signed Up!')
             userMailer.newUser(user);
@@ -57,6 +63,7 @@ module.exports.create = async function(req, res){
             res.redirect('back');
         }
     } catch (error) {
+        console.log(error);
         req.flash('error','Error in signing Up')
         return res.redirect('back');
     }

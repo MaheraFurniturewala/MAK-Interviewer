@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
         required: true
+    },
+    authVia: {
+        type:String,
+        required:true
     }
 }, {
     timestamps: true

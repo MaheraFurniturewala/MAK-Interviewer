@@ -2,6 +2,7 @@ const express = require('express');
 const port = process.env.PORT || 8000;
 const db = require('./config/mongoose'); 
 const app = express();
+const csrf = require('csurf');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const session = require('express-session');
@@ -54,6 +55,7 @@ app.use(session({
 }));
 
 
+app.use(csrf());
 app.use(passport.initialize());
 app.use(passport.session());
 

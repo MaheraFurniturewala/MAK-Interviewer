@@ -2,16 +2,14 @@ const User = require('../models/user');
 const userMailer = require('../mailers/user_signup_mailer');
 
 
-module.exports.signIn = function(req,res){
-    return res.render('sign_in.ejs');
-}
+
 
 module.exports.signIn = function(req, res){
 
     if (req.isAuthenticated()){
         return res.redirect('/');
     }
-    return res.render('sign_in');
+    return res.render('sign_in',{   csrfToken: req.csrfToken() });
 }
 
 // module.exports.signUp = function(req,res){

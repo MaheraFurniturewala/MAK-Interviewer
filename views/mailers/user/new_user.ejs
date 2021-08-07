@@ -12,8 +12,8 @@
       </nav>
       <div style="padding: 8% 20% 5% 20%">
           <p>Dear <b><%= user.name %></b>,<br><br>Please verify your email address to complete your MAK Interviewer account.</p>
-          <a id="verified" href="http://localhost:8000/users/verify/<%= user._id %>"></a>
-          <button type="button" class="btn btn-secondary btn-lg" style="margin: auto; display: flex; justify-content: center; display: grid;">Verify Email Account</button>
+          <a id="verified" href="http://localhost:8000/users/verify/<%= user._id %>">
+          <button type="button" class="btn btn-secondary btn-lg" style="margin: auto; display: flex; justify-content: center; display: grid;">Verify Email Account</button></a>
           <br>
           <p>This link will expire in 24 hours. If it has expired, try to request <a>a new verification email.</a></p>
           <p>We received a request for a MAK Interviewer Account using your email address. If you did not make his request, email at:<address>interviewermak@gmail.com</address></p>

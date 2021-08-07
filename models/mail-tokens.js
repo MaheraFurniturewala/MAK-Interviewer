@@ -21,4 +21,4 @@ const mailTokens = new mongoose.Schema({
      }
 });
 
-module.exports = mongoose.model('resetTokens', resetTokens);
+module.exports = mongoose.model('mailTokens', mailTokens);

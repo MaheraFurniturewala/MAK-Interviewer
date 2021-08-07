@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const userMailer = require('../mailers/user_signup_mailer');
-
-
+const crypto = require('crypto');
+const mailTokens = require('../models/mail-tokens');
 
 
 
@@ -13,29 +13,51 @@ module.exports.signIn = function(req, res){
     return res.render('sign_in',{   csrfToken: req.csrfToken() });
 }
 
-// module.exports.signUp = function(req,res){
-//     return res.render('sign_up');
-// }
+module.exports.signUp = function(req,res){
+    return res.render('sign_in');
+}
 
 module.exports.verify = function(req,res){
     return res.render('verify');
 }
 
-module.exports.verified = function(req,res){
-    User.findOne({id:req.body.params},function(err,user){
-        if(err){console.log("Error in verifying email" ,err);
-         return res.redirect('/users/sign-up');
+module.exports.verified = async function(req,res){
+    try {
+        let token = await mailTokens.findOne({token: req.params.token});
+    if(token){
+        let user = await User.findOne({email:token.email});
+        if(user){
+            user.isVerified = true;
+            user.save();
+            await mailTokens.findOneAndDelete({ token: token.token });
+            req.flash('info','Your email has been verified, please sign-in to continue');
+            return res.redirect('/users/sign-in');
         }else{
-            if(!user){
-                return res.redirect('/users/sign-up');
-            }else{
-                user.isVerified = true;
-                user.save();
-                return res.redirect('/users/sign-in');
-            }
+            return res.redirect('/users/sign-up');
         }
+    }
 
-    });
+    } catch(err)  {
+        req.flash('err','error in verifying mail');
+        console.log(err);
+        return res.redirect('/users/sign-up');
+        
+    }
+    
+    // User.findOne({id:req.body.params},function(err,user){
+    //     if(err){console.log("Error in verifying email" ,err);
+    //      return res.redirect('/users/sign-up');
+    //     }else{
+    //         if(!user){
+    //             return res.redirect('/users/sign-up');
+    //         }else{
+    //             user.isVerified = true;
+    //             user.save();
+    //             return res.redirect('/users/sign-in');
+    //         }
+    //     }
+
+    // });
 }
 
 // get the sign up data
@@ -56,8 +78,11 @@ module.exports.create = async function(req, res){
                 isVerified:false
             });
             user = await user.save();
+            let crypt_token = crypto.randomBytes(16).toString('hex');
+            console.log("crypto:: ",crypt_token);
+            token = await mailTokens({ token: crypt_token, email: user.email }).save();
             req.flash('success','You have Signed Up!')
-            userMailer.newUser(user);
+            userMailer.newUser(token);
             return res.redirect('/users/verify');
         }else{
             req.flash('error','This user exists')

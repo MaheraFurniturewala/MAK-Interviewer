@@ -5,11 +5,22 @@
 
     <div class="container" style="background: #000;">
     <div class="main" >
+        <% if(isVerified != undefined && isVerified == true){ %>
         <h1 style="text-align: center; color: whitesmoke;"><b>Almost there....</b></h1>
         <br><br><br>
         <p style="text-align: center; color: whitesmoke;">Please check your email to confirm your account.</p>
         <p style="text-align: center; color: whitesmoke">......................</p>
         <br><br>
+        
+
+        
         <p style="text-align: center; color: whitesmoke">If you didn't receive a mail from us<br>please check your spam folder or check if you have entered the correct Email ID r not.<br><br>The email might take about 15 Minutes to reach your email.<br><br>Still can't find find it? Try searching Gmail for "in:all subject:(Confirm your account)"</p>
+        
+    <a href="/users/resend-verification-mail">Re-Send Verification Mail</a>
+    <% } else {%>
+        <p style="text-align: center; color: whitesmoke"><br>Seems like your verification token has expired or you have not verified your mail .Click here to re-send a verification Mail or check your email account for existing c=verification mails</p>
+        if
+    <a href="/users/resend-verification-mail">Send Verification Mail</a>
+        <% }%>
     </div>
     </div>

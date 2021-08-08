@@ -21,8 +21,19 @@ module.exports.signUp = function(req,res){
 }
 
 module.exports.verify = function(req,res){
-    return res.render('verify');
+    if(req.isAuthenticated()){
+        res.redirect('/');
+    }
+    return res.render('verify',{isVerified:true});
 }
+
+// module.exports.resendVerificationMail = async function(req,res){
+//     if(req.isAuthenticated()){
+//         return res.redirect('/');
+//     }
+//     if()
+
+// }
 
 module.exports.verified = async function(req,res){
     try {
@@ -35,9 +46,12 @@ module.exports.verified = async function(req,res){
             await mailTokens.findOneAndDelete({ token: token.token });
             req.flash('info','Your email has been verified, please sign-in to continue');
             return res.redirect('/users/sign-in');
-        }else{
-            return res.redirect('/users/sign-up');
         }
+    }else{
+        // console.log("seems to be some trouble");
+        req.flash('Token expired');
+        return res.render('verify',{isVerified:false,});
+        
     }
 
     } catch(err)  {
@@ -47,20 +61,6 @@ module.exports.verified = async function(req,res){
         
     }
     
-    // User.findOne({id:req.body.params},function(err,user){
-    //     if(err){console.log("Error in verifying email" ,err);
-    //      return res.redirect('/users/sign-up');
-    //     }else{
-    //         if(!user){
-    //             return res.redirect('/users/sign-up');
-    //         }else{
-    //             user.isVerified = true;
-    //             user.save();
-    //             return res.redirect('/users/sign-in');
-    //         }
-    //     }
-
-    // });
 }
 
 // get the sign up data
@@ -83,12 +83,17 @@ module.exports.create = async function(req, res){
             user = await user.save();
             let crypt_token = crypto.randomBytes(16).toString('hex');
             // console.log("crypto:: ",crypt_token);
-            token = await mailTokens({ token: crypt_token, email: user.email }).save();
+            token = await new mailTokens({ token: crypt_token, email: user.email });
+            token.save();
             req.flash('success','You have Signed Up!')
             userMailer.newUser(token);
             return res.redirect('/users/verify');
         }else{
-            req.flash('error','This user exists')
+            if(user.isVerified == false){
+                req.flash('info','Email not verified');
+                return res.render('verify',{isVerified:false});
+            }
+            req.flash('error','This user exists kindly sign-in');
             res.redirect('back');
         }
     } catch (error) {
@@ -101,7 +106,7 @@ module.exports.create = async function(req, res){
 
 // sign in and create a session for the user
 module.exports.createSession = function(req, res){
-    req.flash('success','Logged in successfully!');
+    
         return res.redirect('/');
     
 }

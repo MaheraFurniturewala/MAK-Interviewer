@@ -1,24 +1,32 @@
-    
+
   <link rel="stylesheet" type="text/css" href="/css/sign_in.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
   <link rel="stylesheet" href="/css/google-btn.css" />
     <div class="form">
-        <form class="form_sign-in" method="POST" action="/users/create-session">
-        <h2>Login</h2>
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <form class="form_sign-up" method="POST" action="/users/create">
+            <h2>Create Account</h2>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="input">
             <div class="inputBox">
-            <label for="email" >Email</label>
+            <label for="name">Name</label>
+            <input class="form__input" type="text" placeholder="Name" name="name" />
+        </div>
+        <div class="input">
+            <div class="inputBox">
+            <label name="email">Email</label>
             <input class="form__input" type="text" placeholder="Email" name="email" />
-          </div>
+        </div>
         <div class="inputBox">
             <label for="password">Password</label>
             <input class="form__input" type="password" placeholder="Password" name="password" />
         </div>
-       
         <div class="inputBox">
-            <input class="form__input button" type="submit" value="Sign In" >
+            <label for="confirm_password">Confirm Password</label>
+            <input class="form__input" type="password" name="confirm_password" placeholder="Confirm Password" required />
+        </div>
+        <div class="inputBox">
+            <input class="form__input button" type="submit" value="Sign Up" >
         </div>
         <a href="/users/auth/google">
             <div class="google-btn">
@@ -29,9 +37,9 @@
               <p class="btn-text"><b>Sign in with google</b></p>
             </div>
           </a>
+
+
     </div>
-    <p class="forget">Forgot Password ? <a href="#">Click Here</a></p>
-    <p class="forget">New here? <a href="/users/sign-up">Create account</a></p>
-  </form>
-  
+    <p class="forget">Already have an account? <a href="/users/sign-in">Click Here</a></p>
+</form>
 </div>

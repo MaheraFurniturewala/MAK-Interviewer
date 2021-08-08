@@ -14,7 +14,10 @@ module.exports.signIn = function(req, res){
 }
 
 module.exports.signUp = function(req,res){
-    return res.render('sign_in');
+    if (req.isAuthenticated()){
+        return res.redirect('/');
+    }
+    return res.render('sign_up',{   csrfToken: req.csrfToken() });
 }
 
 module.exports.verify = function(req,res){
@@ -79,7 +82,7 @@ module.exports.create = async function(req, res){
             });
             user = await user.save();
             let crypt_token = crypto.randomBytes(16).toString('hex');
-            console.log("crypto:: ",crypt_token);
+            // console.log("crypto:: ",crypt_token);
             token = await mailTokens({ token: crypt_token, email: user.email }).save();
             req.flash('success','You have Signed Up!')
             userMailer.newUser(token);

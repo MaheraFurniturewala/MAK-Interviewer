@@ -1,26 +1,40 @@
+<link rel="stylesheet" type="text/css" href="css/sign_in.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 
-    <link rel="stylesheet" type="text/css" href="css/sign_in.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
-  
+<div class="container" style="background: #000;">
+<div class="main" >
+    <% if(isVerified != undefined && isVerified == true && resendMail == false){ %>
+    <h1 style="text-align: center; color: whitesmoke;"><b>Almost there....</b></h1>
+    <br><br><br>
+    <p style="text-align: center; color: whitesmoke;">Please check your email to confirm your account.</p>
+    <p style="text-align: center; color: whitesmoke">......................</p>
+    <br><br>
+    
+    
+    <p style="text-align: center; color: whitesmoke">If you didn't receive a mail from us<br>please check your spam folder or check if you have entered the correct Email ID r not.<br><br>The email might take about 15 Minutes to reach your email.<br><br>Still can't find find it? Try searching Gmail for "in:all subject:(Confirm your account)"</p>
+    
+<a href="/users/resend-verification-mail-form">Re-Send Verification Mail</a>
+<% } else if(isVerified != undefined && isVerified == false && resendMail == false) {%>
+    <p style="text-align: center; color: whitesmoke"><br>Seems like your verification token has expired or you have not verified your mail .Click here to re-send a verification Mail or check your email account for existing c=verification mails</p>
+    if
+<a href="/users/resend-verification-mail-form">Send Verification Mail</a>
+    <% } else if(isVerified != undefined && isVerified == false && resendMail == true ){ %>
+        <form class="form_resend_mail" method="POST" action="/users/resend-verification-mail">
+            <h2 style="color: white">Enter your Email ID</h2>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="input">
+                <div class="inputBox">
+                <label for="email" style="color:white" >Email</label>
+                <input class="form__input" type="text" placeholder="Email" name="email" />
+              </div>
+            <div class="inputBox">
+                <input class="form__input button" type="submit" value="Send Mail" >
+            </div>
+            
+      </form>
+        <%}%>
 
-    <div class="container" style="background: #000;">
-    <div class="main" >
-        <% if(isVerified != undefined && isVerified == true){ %>
-        <h1 style="text-align: center; color: whitesmoke;"><b>Almost there....</b></h1>
-        <br><br><br>
-        <p style="text-align: center; color: whitesmoke;">Please check your email to confirm your account.</p>
-        <p style="text-align: center; color: whitesmoke">......................</p>
-        <br><br>
-        
 
-        
-        <p style="text-align: center; color: whitesmoke">If you didn't receive a mail from us<br>please check your spam folder or check if you have entered the correct Email ID r not.<br><br>The email might take about 15 Minutes to reach your email.<br><br>Still can't find find it? Try searching Gmail for "in:all subject:(Confirm your account)"</p>
-        
-    <a href="/users/resend-verification-mail">Re-Send Verification Mail</a>
-    <% } else {%>
-        <p style="text-align: center; color: whitesmoke"><br>Seems like your verification token has expired or you have not verified your mail .Click here to re-send a verification Mail or check your email account for existing c=verification mails</p>
-        if
-    <a href="/users/resend-verification-mail">Send Verification Mail</a>
-        <% }%>
-    </div>
-    </div>
+</div>
+</div>

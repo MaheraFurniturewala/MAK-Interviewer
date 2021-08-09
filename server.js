@@ -1,15 +1,15 @@
 const express = require('express');
 const port = process.env.PORT || 8000;
-const db = require('./config/mongoose'); 
 const app = express();
+const db = require('./config/mongoose'); 
 const csrf = require('csurf');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
-const session = require('express-session');
-const MongoStore=require('connect-mongo')(session);
 const googleStrategy = require('./config/passport-google-oauth2.0.js');
 const sassMiddleware=require('node-sass-middleware');
 const flash = require('connect-flash');
+const session = require('express-session');
+const MongoStore=require('connect-mongo')(session);
 const customMware = require('./config/middleware');
 const expressLayouts = require('express-ejs-layouts');
 //setting up scss middleware
@@ -21,7 +21,7 @@ app.use(sassMiddleware({
     prefix: '/css'
 }));
 
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded());
 
 app.use(express.static('./assets'));
 app.use(expressLayouts);
@@ -54,10 +54,10 @@ app.use(session({
     )
 }));
 
-
 app.use(csrf());
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use(passport.setAuthenticatedUser);
 

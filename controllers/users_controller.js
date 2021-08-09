@@ -24,7 +24,7 @@ module.exports.verify = function(req,res){
     if(req.isAuthenticated()){
         res.redirect('/');
     }
-    return res.render('verify',{isVerified:true});
+    return res.render('verify',{isVerified:true,resendMail :false,csrfToken: req.csrfToken()});
 }
 
 // module.exports.resendVerificationMail = async function(req,res){
@@ -50,7 +50,7 @@ module.exports.verified = async function(req,res){
     }else{
         // console.log("seems to be some trouble");
         req.flash('Token expired');
-        return res.render('verify',{isVerified:false,});
+        return res.render('verify',{isVerified:false,resendMail :false,csrfToken: req.csrfToken()});
         
     }
 
@@ -84,14 +84,14 @@ module.exports.create = async function(req, res){
             let crypt_token = crypto.randomBytes(16).toString('hex');
             // console.log("crypto:: ",crypt_token);
             token = await new mailTokens({ token: crypt_token, email: user.email });
-            token.save();
+            await token.save();
             req.flash('success','You have Signed Up!')
             userMailer.newUser(token);
             return res.redirect('/users/verify');
         }else{
             if(user.isVerified == false){
                 req.flash('info','Email not verified');
-                return res.render('verify',{isVerified:false});
+                return res.render('verify',{isVerified:false,csrfToken: req.csrfToken(),resendMail:false});
             }
             req.flash('error','This user exists kindly sign-in');
             res.redirect('back');
@@ -110,8 +110,48 @@ module.exports.createSession = function(req, res){
         return res.redirect('/');
     
 }
-// module.exports.destroySession = function(req, res){
 
-//     req.logout();
-//     return res.redirect('/');
-// }
+
+module.exports.resendVerificationMailForm = function(req,res){
+    if(req.isAuthenticated()){
+        req.flash('info','You have already signed in!');
+        return res.redirect('/');
+    }
+    return res.render('verify',{isVerified: false,resendMail :true,csrfToken: req.csrfToken()});
+}
+
+module.exports.resendVerificationMail = async function(req,res){
+    // console.log("inside resend mail");
+    if(req.isAuthenticated()){
+        console.log("request authenticated");
+        req.flash('info','You have already signed in!');
+        return res.redirect('/');
+    }
+    let user =await User.findOne({email:req.body.email});
+    if(!user){
+        req.flash('error','This email id is not registered!');
+        return res.redirect('/users/sign-up');
+    }
+    if(user.isVerified == false){
+        let token = await mailTokens.findOne({email:req.body.email});
+        if(token){
+            await mailTokens.findOneAndDelete({email:req.body.email});
+        }
+            let crypt_token = crypto.randomBytes(16).toString('hex');
+            token = await new mailTokens({ token: crypt_token, email: user.email });
+            await token.save();
+            userMailer.newUser(token);
+            return res.redirect('/users/verify');
+        
+    }else{
+        req.flash('info','Your Email Id has already been verified');
+        return res.redirect('/users/sign-in');
+    }
+
+}
+
+module.exports.destroySession = function(req, res){
+
+    req.logout();
+    return res.redirect('/');
+}

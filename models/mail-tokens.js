@@ -17,7 +17,7 @@ const mailTokens = new mongoose.Schema({
    
     expire_at:{ type: Date, 
         default: Date.now, 
-        expires: 6000
+        expires: 600
      }
 });
 

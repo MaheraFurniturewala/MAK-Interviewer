@@ -2,6 +2,7 @@ const express = require('express');
 const port = process.env.PORT || 8000;
 const app = express();
 const db = require('./config/mongoose'); 
+var cookieParser = require('cookie-parser')
 const csrf = require('csurf');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
@@ -21,7 +22,7 @@ app.use(sassMiddleware({
     prefix: '/css'
 }));
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:true}));
 
 app.use(express.static('./assets'));
 app.use(expressLayouts);

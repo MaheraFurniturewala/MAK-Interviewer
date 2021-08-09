@@ -8,6 +8,7 @@ mongoose.connect('mongodb://localhost/mak_interviewer_development',
      });
 
 const db = mongoose.connection;
+// mongoose.set('useFindAndModify', false);
 
 db.on('error', console.error.bind(console, "Error connecting to MongoDB"));
 

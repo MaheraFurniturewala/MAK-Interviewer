@@ -13,27 +13,33 @@ passport.use(new LocalStrategy({
             if (err) {
                 return done(err);
             }
-            bcrypt.compare(password, user.password, function (err, isMatch) {
-                console.log(isMatch);
-                if (!user) {
-                    req.flash('error', 'Username does not exist');
-                    return done(null, false);
-                }
-                if (isMatch == false) {
-                    req.flash('error', 'Wrong Username/Password');
-                    return done(null,false);
-                }
-                if(user.isVerified==false) {
-                    req.flash('info', 'Email-id not verified');
-                    return done(null,false);
-                }
+            if(user){
 
-                return done(null, user);
-            });
+                bcrypt.compare(password, user.password, function (err, isMatch) {
+                    console.log(isMatch);
+                   
+                   
+                    if (isMatch == false) {
+                        req.flash('error', 'Wrong Username/Password');
+                        return done(null,false);
+                    }
+                    if(user.isVerified==false) {
+                        req.flash('info', 'Email-id not verified');
+                        return done(null,false);
+                    }
+    
+                    return done(null, user);
+                });
+            }
+            else if (!user) {
+                req.flash('error', 'Username does not exist');
+                return done(null, false);
+            }
 
         });
     }
 ));
+
 
 // serializing the user to decide which key is to be kept in the cookies
 passport.serializeUser(function (user, done) {

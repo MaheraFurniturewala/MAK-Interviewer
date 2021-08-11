@@ -23,4 +23,5 @@ router.get('/forgot-password-page',usersController.forgotPasswordPage);
 router.post('/forgot-password',usersController.forgotPassword);
 router.get('/reset-password/:token',usersController.resetPasswordPage);
 router.post('/reset-password/:email',usersController.resetPassword);
+router.get('/dashboard/:id', passport.checkAuthentication, usersController.dashboard);
 module.exports = router;

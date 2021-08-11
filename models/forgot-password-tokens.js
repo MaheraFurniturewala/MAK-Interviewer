@@ -1,4 +1,3 @@
-  
 const mongoose = require('mongoose');
 
 const forgotPasswordTokens = new mongoose.Schema({

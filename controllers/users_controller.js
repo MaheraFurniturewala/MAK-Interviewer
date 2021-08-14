@@ -42,14 +42,6 @@ module.exports.verify = function (req, res) {
     return res.render('verify', { isVerified: true, resendMail: false, csrfToken: req.csrfToken() });
 }
 
-// module.exports.resendVerificationMail = async function(req,res){
-//     if(req.isAuthenticated()){
-//         return res.redirect('/');
-//     }
-//     if()
-
-// }
-
 module.exports.verified = async function (req, res) {
     try {
         let token = await mailTokens.findOne({ token: req.params.token });
@@ -63,7 +55,6 @@ module.exports.verified = async function (req, res) {
                 return res.redirect('/users/sign-in');
             }
         } else {
-            // console.log("seems to be some trouble");
             req.flash('Token expired');
             return res.render('verify', { isVerified: false, resendMail: false, csrfToken: req.csrfToken() });
 
@@ -97,7 +88,6 @@ module.exports.create = async function (req, res) {
             });
             user = await user.save();
             let crypt_token = crypto.randomBytes(16).toString('hex');
-            // console.log("crypto:: ",crypt_token);
             token = await new mailTokens({ token: crypt_token, email: user.email });
             await token.save();
             req.flash('success', 'You have Signed Up!')

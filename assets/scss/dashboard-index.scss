@@ -3,14 +3,14 @@
     font-family: 'Open Sans';
     --text-primary: #b6b6b6;
     --text-secondary: #ececec;
-    --bg-primary: #23232e;
+    --bg-primary: #1F1F1F;
     --bg-secondary: #141418;
     --transition-speed: 600ms;
   }
   
   body {
     color: black;
-    background-color: white;
+    background-color: #292929;
     margin: 0;
     padding: 0;
   }
@@ -36,7 +36,7 @@
     position: fixed;
     background-color: var(--bg-primary);
     transition: width 600ms ease;
-    overflow: scroll;
+    // overflow: scroll;
   }
   
   .navbar-nav {
@@ -80,7 +80,7 @@
   
   .nav-link svg {
     width: rem;
-    min-width: 2rem;
+    min-width: 1rem;
     margin: 0 1.5rem;
   }
   
@@ -102,8 +102,8 @@
     text-transform: uppercase;
     margin-bottom: 1rem;
     text-align: center;
-    color: var(--text-secondary);
-    background: var(--bg-secondary);
+    // color: var(--text-secondary);
+    // background: var(--bg-secondary);
     font-size: 1.5rem;
     letter-spacing: 0.3ch;
     width: 100%;

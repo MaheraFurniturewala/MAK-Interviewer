@@ -1,8 +1,10 @@
 const express = require('express');
 const port = process.env.PORT || 8000;
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const db = require('./config/mongoose'); 
-var cookieParser = require('cookie-parser')
+// var cookieParser = require('cookie-parser')
 const csrf = require('csurf');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
@@ -70,9 +72,9 @@ app.use(customMware.setFlash);
 
 app.use('/', require('./routes'));
 
-app.listen(port, (err) => {
+server.listen(port, (err) => {
     if(err){
-        console.log(`error in runnning server on port: ${port}`);
+        console.log(`error in running server on port: ${port}`);
         return;
     }else{
         console.log(`Server running on port : ${port}`);

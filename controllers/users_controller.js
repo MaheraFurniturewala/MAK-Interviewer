@@ -1,25 +1,27 @@
+//models
 const User = require('../models/user');
-const userMailer = require('../mailers/user_signup_mailer');
-const forgotPasswordMailer = require('../mailers/forgot_password_mailer');
-const crypto = require('crypto');
 const mailTokens = require('../models/mail-tokens');
 const forgotPasswordTokens = require('../models/forgot-password-tokens');
+//mailers
+const userMailer = require('../mailers/user_signup_mailer');
+const forgotPasswordMailer = require('../mailers/forgot_password_mailer');
+//libraries
+const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 
 
-
-module.exports.dashboard = function(req, res){
-    User.findById(req.params.id,function(err,user){
+//rendering the dashboard on session creation
+module.exports.dashboard = function (req, res) {
+    User.findById(req.params.id, function (err, user) {
         return res.render('dashboard/index.ejs', {
-    
+
             title: 'User Dashboard',
-            // cannot use user since it is already in locals so we need to use some other variable
-            dashboard_user: user
         });
 
     });
 }
 
+//rendering the sign-in form
 module.exports.signIn = function (req, res) {
 
     if (req.isAuthenticated()) {
@@ -28,6 +30,7 @@ module.exports.signIn = function (req, res) {
     return res.render('sign_in', { csrfToken: req.csrfToken() });
 }
 
+//rendering the sign-up form
 module.exports.signUp = function (req, res) {
     if (req.isAuthenticated()) {
         return res.redirect(`/users/dashboard/${req.user.id}`);
@@ -35,6 +38,7 @@ module.exports.signUp = function (req, res) {
     return res.render('sign_up', { csrfToken: req.csrfToken() });
 }
 
+//rendering the verify email page
 module.exports.verify = function (req, res) {
     if (req.isAuthenticated()) {
         return res.redirect(`/users/dashboard/${req.user.id}`);
@@ -42,6 +46,7 @@ module.exports.verify = function (req, res) {
     return res.render('verify', { isVerified: true, resendMail: false, csrfToken: req.csrfToken() });
 }
 
+//rendering sign-in form on email verification
 module.exports.verified = async function (req, res) {
     try {
         let token = await mailTokens.findOne({ token: req.params.token });
@@ -69,7 +74,7 @@ module.exports.verified = async function (req, res) {
 
 }
 
-// get the sign up data
+// get the sign up data and send verification mail
 module.exports.create = async function (req, res) {
     if (req.body.password != req.body.confirm_password) {
         req.flash('error', 'Passwords do not match');
@@ -111,13 +116,12 @@ module.exports.create = async function (req, res) {
 
 // sign in and create a session for the user
 module.exports.createSession = function (req, res) {
-   console.log(req.user.id);
-    req.flash('success','Signed in successfully!')
+    req.flash('success', 'Signed in successfully!')
     return res.redirect(`/users/dashboard/${req.user.id}`);
 
 }
 
-
+//resending verification mail form
 module.exports.resendVerificationMailForm = function (req, res) {
     if (req.isAuthenticated()) {
         req.flash('info', 'You have already signed in!');
@@ -126,8 +130,8 @@ module.exports.resendVerificationMailForm = function (req, res) {
     return res.render('verify', { isVerified: false, resendMail: true, csrfToken: req.csrfToken() });
 }
 
+//resending the verification mail
 module.exports.resendVerificationMail = async function (req, res) {
-    // console.log("inside resend mail");
     if (req.isAuthenticated()) {
         console.log("request authenticated");
         req.flash('info', 'You have already signed in!');
@@ -156,10 +160,13 @@ module.exports.resendVerificationMail = async function (req, res) {
 
 }
 
+//rendering forgot password page for email id
 module.exports.forgotPasswordPage = function (req, res) {
     res.render('forgot-password.ejs', { csrfToken: req.csrfToken(), reset: false, message: '' });
 }
+
 //need to add check for if token already exists
+//sending forgot-password mail
 module.exports.forgotPassword = async function (req, res) {
     try {
         let user = await User.findOne({ email: req.body.email });
@@ -185,7 +192,8 @@ module.exports.forgotPassword = async function (req, res) {
 
 }
 
-module.exports.resetPasswordPage = async function (req,res) {
+//rendering reset password form from mail
+module.exports.resetPasswordPage = async function (req, res) {
     let paramToken = req.params.token;
     if (paramToken) {
         let token = await forgotPasswordTokens.findOne({ token: req.params.token });
@@ -205,6 +213,8 @@ module.exports.resetPasswordPage = async function (req,res) {
     }
 
 }
+
+//resetting the password
 module.exports.resetPassword = async function (req, res) {
     console.log(req.body.password);
     if (req.body.password != req.body.confirm_password || !req.body.password || !req.body.confirm_password) {
@@ -212,25 +222,27 @@ module.exports.resetPassword = async function (req, res) {
         return res.redirect('back');
     }
     try {
-        
-        let token = await forgotPasswordTokens.findOne({email:req.params.email});
-        if(token){
-            let user = await User.findOne({ email:token.email});
+
+        let token = await forgotPasswordTokens.findOne({ email: req.params.email });
+        if (token) {
+            let user = await User.findOne({ email: token.email });
             user.password = req.body.password;
             await user.save();
-            await forgotPasswordTokens.findOneAndDelete({email:token.email});
-            req.flash('success','Your password has been changed, kindly sign-in');
+            await forgotPasswordTokens.findOneAndDelete({ email: token.email });
+            req.flash('success', 'Your password has been changed, kindly sign-in');
             return res.redirect('/users/sign-in');
         }
     } catch (error) {
-        console.log("Error in changing password",error);
+        console.log("Error in changing password", error);
         return res.redirect('back');
     }
-  
+
 }
 
+//sign-out
 module.exports.destroySession = function (req, res) {
 
     req.logout();
+    req.flash('success','You have signed out!');
     return res.redirect('/');
 }

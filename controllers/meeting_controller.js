@@ -10,7 +10,7 @@ module.exports.createRoomId = function(req,res){
 
 module.exports.enterRoom = function(req,res){
     if(req.isAuthenticated){
-        res.render('/editor/editor.ejs',{roomId : req.params.roomId});
+        return res.render('editor/editor.ejs',{roomId : req.params.roomId});
     }else{
         return res.redirect('/users-sign-in');
     }

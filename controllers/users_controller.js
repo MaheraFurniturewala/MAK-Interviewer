@@ -13,7 +13,7 @@ const bcrypt = require('bcrypt');
 //rendering the dashboard on session creation
 module.exports.dashboard = function (req, res) {
     User.findById(req.params.id, function (err, user) {
-        return res.render('dashboard/index.ejs', {
+        return res.render('dashboard/dashboard.ejs', {
 
             title: 'User Dashboard',
         });

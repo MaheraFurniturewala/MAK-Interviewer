@@ -73,6 +73,10 @@ app.use(customMware.setFlash);
 
 app.use('/', require('./routes'));
 
+io.on('connection',(socket)=>{
+    console.log("User connected from backend");
+})
+
 server.listen(port, (err) => {
     if(err){
         console.log(`error in running server on port: ${port}`);
@@ -81,8 +85,6 @@ server.listen(port, (err) => {
         console.log(`Server running on port : ${port}`);
     }
 });
-
-module.exports = {io};
 
 
 

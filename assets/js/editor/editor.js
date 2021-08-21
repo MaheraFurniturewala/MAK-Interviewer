@@ -1,3 +1,7 @@
+const socket = io();
+socket.on('connect',()=>{
+    console.log("connection established from front");
+});
 
 let editor;
 editor = ace.edit("editor");
@@ -55,3 +59,4 @@ function changeLanguage() {
 
 
 // }
+

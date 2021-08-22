@@ -1,6 +1,6 @@
 const socket = io();
 socket.on('connect',()=>{
-    console.log("connection established from front");
+    socket.emit('join-room',roomId,userId);
 });
 
 let editor;

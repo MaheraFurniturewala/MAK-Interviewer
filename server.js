@@ -3,7 +3,6 @@ const port = process.env.PORT || 8000;
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-const { v4: uuidV4 } = require('uuid')
 const db = require('./config/mongoose'); 
 // var cookieParser = require('cookie-parser')
 const csrf = require('csurf');
@@ -16,6 +15,7 @@ const session = require('express-session');
 const MongoStore=require('connect-mongo')(session);
 const customMware = require('./config/middleware');
 const expressLayouts = require('express-ejs-layouts');
+const {joinRoom} = require('./controllers/socket_controllers');
 //setting up scss middleware
 app.use(sassMiddleware({
     src: './assets/scss',
@@ -73,9 +73,15 @@ app.use(customMware.setFlash);
 
 app.use('/', require('./routes'));
 
+//------------------sockets---------------------
 io.on('connection',(socket)=>{
-    console.log("User connected from backend");
-})
+  socket.on('join-room',(roomId,userId)=>{
+    joinRoom(socket,roomId,userId)
+     
+  
+  })
+});
+
 
 server.listen(port, (err) => {
     if(err){
@@ -85,7 +91,6 @@ server.listen(port, (err) => {
         console.log(`Server running on port : ${port}`);
     }
 });
-
 
 
 

@@ -16,6 +16,8 @@ const roomSchema = new mongoose.Schema({
     ref: 'User'
     }
   ]
+},{
+  timestamps:true
 });
 
 const Room = mongoose.model('Room',roomSchema);

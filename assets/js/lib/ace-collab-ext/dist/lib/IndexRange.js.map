@@ -1,0 +1,1 @@
+{"version":3,"file":"IndexRange.js","sourceRoot":"","sources":["../../src/ts/IndexRange.ts"],"names":[],"mappings":"","sourcesContent":["export interface IIndexRange {\n  start: number;\n  end: number;\n}\n"]}

@@ -1,0 +1,1 @@
+{"version":3,"file":"RowRange.js","sourceRoot":"","sources":["../../src/ts/RowRange.ts"],"names":[],"mappings":"","sourcesContent":["export interface IRowRange {\n  start: number;\n  end: number;\n}\n"]}

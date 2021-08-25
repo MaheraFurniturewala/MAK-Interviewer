@@ -76,9 +76,7 @@ app.use('/', require('./routes'));
 //------------------sockets---------------------
 io.on('connection',(socket)=>{
   socket.on('join-room',(roomId,userId)=>{
-    joinRoom(socket,roomId,userId)
-     
-  
+    joinRoom(socket,roomId,userId);
   })
 });
 

@@ -45,6 +45,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@convergencelabs/ace-collab-ext": "^0.6.0",
     "nodemon": "^2.0.12"
   }
 }

@@ -4,13 +4,16 @@ socket.on('connect',()=>{
 });
 
 let editor;
-editor = ace.edit("editor");
 //inside window.onload fn configure our editor
 // to initialize thee ace editor
 window.onload = function () {
     //arg is  the id of the div where we want to keep our editor
+    editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/c_cpp");
+    editor.setOptions({
+        fontSize: "10pt"
+      });
 }
 
 //configure editor mode whenever language will be  changed from the dropdown

@@ -1,8 +1,29 @@
     <link rel="stylesheet" href="/css/editor.css">
-    <div class="header">IDE</div>
-    <div class="control-panel">
-        Select Language:
-        &nbsp; &nbsp;
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+      <nav>
+        <div class="left">
+          <div class="date">Date</div>
+          <div class="room-name">Room</div>
+          <div class="end-interview">End Interview</div>
+        </div>
+        <div class="right">
+          <div class="output">Output</div>
+          <div class="notes">Notes</div>
+          <div class="make-call">Make Call</div>
+          <div class="invite">Invite</div>
+          <div class="profile">Profile</div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="editor" id="editor"></div>
+      <div class="output"></div>
+    </main>
+    <section class="control-panel">
+      <div class=" button-run-container">
+        <button class="btn" onclick="executeCode()">Run</button>
+      </div>
+      <div class="language-selection">Select Language:
         <select class="languages" id="languages" onchange="changeLanguage()">
             <option value="cpp">C++</option>
             <option value="c">C</option>
@@ -12,12 +33,12 @@
             <option value="kt">Kotlin</option>
             <option value="swift">Swift</option>
         </select>
-    </div> 
-    <div class="editor" id="editor"></div>
-    <div class="button-container">
-        <button class="btn" onclick="executeCode()"> Run </button>
+      </div>
+      <div class="settings">
+        <a href="#"><i class="fa fa-cog fa-2x" style="color: white;" aria-hidden="true"></i></a>
+      </div>
     </div>
-    <div class="output"></div>
+</section>
 
     <script src="\socket.io\socket.io.js"></script> 
     <script>

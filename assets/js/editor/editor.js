@@ -1,13 +1,15 @@
-const socket = io();
-socket.on('connect',()=>{
-    socket.emit('join-room',roomId,userId);
-});
+
 
 let editor;
 //inside window.onload fn configure our editor
 // to initialize thee ace editor
 window.onload = function () {
     editor = ace.edit("editor");
+    const curMgr = new AceCollabExt.AceMultiCursorManager(editor.getSession());
+    curMgr.addCursor("uid1", "User 1", "orange", {row: 0, column: 10});
+    curMgr.setCursor("uid1", 10);
+
+
     //arg is  the id of the div where we want to keep our editor
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/c_cpp");
@@ -15,6 +17,10 @@ window.onload = function () {
         fontSize: "10pt"
       });
 }
+const socket = io();
+socket.on('connect',()=>{
+    socket.emit('join-room',roomId,userId);
+});
 
 //configure editor mode whenever language will be  changed from the dropdown
 // from onchange attribute in dropdown

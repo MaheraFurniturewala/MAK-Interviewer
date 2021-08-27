@@ -76,12 +76,21 @@ app.use('/', require('./routes'));
 //------------------sockets---------------------
 
 io.on('connection',(socket)=>{
-  socket.on('join-room',async (roomId,userId,userName)=>{
-    await joinRoom(socket,roomId,userId);
-    socket.on('emmiting-my-editor',(userName,MyEditor)=>{
-        socket.broadcast.to(roomId).emit('emmiting-editor-others',socket.id,userName,MyEditor);
+  socket.on('join-room', (roomId,userId,userName)=>{
+     joinRoom(socket,roomId,userId);
+     socket.on('colab',(user_name)=>{
+        socket.broadcast.to(roomId).emit('colab',socket.id,user_name);
+    });
+    socket.on('change',(e,cursor,user_name)=>{
+        console.log("Inside the change");
+        socket.broadcast.to(roomId).emit('change',socket.id,e,user_name);
+    });
+    socket.on('changeCursor',(user_name,cursor)=>{
+        socket.broadcast.to(roomId).emit('changeCursor',socket.id,cursor,user_name);
     });
   });
+
+
 });
 
 

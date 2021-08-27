@@ -1,76 +1,55 @@
-let MyEditor;
-let MyEditorSession
-MyEditor = ace.edit("editor");
-MyEditorSession = MyEditor.getSession();
+let targetEditor = ace.edit("editor");
+let targetSession = targetEditor.getSession();
 
 window.onload = function () {
-    MyEditor.setTheme("ace/theme/monokai");
-    MyEditor.session.setMode("ace/mode/c_cpp");
-    MyEditor.setOptions({
+    targetEditor.setTheme("ace/theme/monokai");
+    targetEditor.session.setMode("ace/mode/c_cpp");
+    targetEditor.setOptions({
         fontSize: "10pt"
-    });
+      });
 }
 
-console.log(MyEditor.selection.getAllRanges())
 const socket = io();
-socket.on('connect', () => {
-    socket.emit('join-room', roomId, userId, userName);
-    socket.emit('emmiting-my-editor', userName, MyEditor);
-    socket.on('emmiting-editor-others', (sourceSocketId, sourceUserName, sourceEditor) => {
-        sourceSession = sourceEditor.getSession();
-        //cursor
-        const MyCursorManager = new AceCollabExt.AceMultiCursorManager(MyEditor.getSession());
-        MyCursorManager.addCursor(sourceSocketId, sourceUserName, orange, 0);
-        
-        //selection
-        const MySelectionManager = new AceCollabExt.AceMultiSelectionManager(MyEditor.getSession());
-        MySelectionManager.addSelection(sourceSocketId, sourceUserName, orange, []);
-
-        //radarView
-        const radarView = new AceCollabExt.AceRadarView("my-radar-view", MyEditor);
-
-        //timeout
-        setTimeout(function() {
-            radarView.addView("fake1", "fake1",  "RoyalBlue", {start: 60, end: 75}, 50);
-            radarView.addView("fake2", "fake2",  "lightgreen", {start: 10, end: 50}, 30);
-          
-            const initialIndices = AceCollabExt.AceViewportUtil.getVisibleIndexRange(sourceEditor);
-            const initialRows = AceCollabExt.AceViewportUtil.indicesToRows(sourceEditor, initialIndices.start, initialIndices.end);
-            radarView.addView(sourceSocketId, sourceUserName, orange, initialRows, 0);
-          }, 0);
-
-          //session
-          sourceSession.getDocument().on("change", function(e) {
-            MyEditor.getSession().getDocument().applyDeltas([e]);
-          });
-
-          //change cursor position
-          sourceSession.selection.on('changeCursor', function(e) {
-            const cursor = sourceEditor.getCursorPosition();
-            MyCursorManager.setCursor(sourceSocketId, cursor);
-            radarView.setCursorRow(sourceSocketId, cursor.row);
-          });
-
-          //selection change
-          sourceSession.selection.on('changeSelection', function(e) {
-            const rangesJson = AceCollabExt.AceRangeUtil.toJson(sourceEditor.selection.getAllRanges());
-            const ranges = AceCollabExt.AceRangeUtil.fromJson(rangesJson);
-            MySelectionManager.setSelection(sourceSocketId, ranges);
-          });
-    });
+socket.on('connect',()=>{
+    socket.emit('join-room',roomId,userId);
+    socket.emit('colab',userName);
 });
 
+socket.on('colab',(socketId,user_name,initialIndices,initialRows)=>{
+    //cursor
+    const targetCursorManager = new AceCollabExt.AceMultiCursorManager(targetEditor.getSession());
+    targetCursorManager.addCursor(socketId, user_name, "orange", {row: 0, column: 10});
+
+    socket.on("change",(socketId,e,user_name)=>{
+        targetEditor.getSession().getDocument().applyDeltas([e]);
+    });
+    
+    socket.on("changeCursor",(socketId,cursor,user_name)=>{
+        targetCursorManager.setCursor(socketId, cursor);
+    })
+   
+});
+
+targetSession.getDocument().on("change", function(e) {
+    console.log("change")
+    socket.emit('change',e,userName);
+  });
+
+  targetSession.selection.on('changeCursor', function(e) {
+    const cursor = targetEditor.getCursorPosition();
+    socket.emit('changeCursor',userName,cursor);
+  });
 
 function changeLanguage() {
     let language = $("#languages").val();
     // console.log(language);
 
-    if (language == 'c' || language == 'cpp') { MyEditor.session.setMode("ace/mode/c_cpp"); }
-    else if (language == 'python') { MyEditor.session.setMode("ace/mode/python"); }
-    else if (language == 'java') { MyEditor.session.setMode("ace/mode/java"); }
-    else if (language == 'ruby') { MyEditor.session.setMode("ace/mode/ruby"); }
-    else if (language == 'kotlin') { MyEditor.session.setMode("ace/mode/kotlin"); }
-    else if (language == 'swift') { MyEditor.session.setMode("ace/mode/swift"); }
+    if (language == 'c' || language == 'cpp') { targetEditor.session.setMode("ace/mode/c_cpp"); }
+    else if (language == 'python') { targetEditor.session.setMode("ace/mode/python"); }
+    else if (language == 'java') { targetEditor.session.setMode("ace/mode/java"); }
+    else if (language == 'ruby') { targetEditor.session.setMode("ace/mode/ruby"); }
+    else if (language == 'kotlin') { targetEditor.session.setMode("ace/mode/kotlin"); }
+    else if (language == 'swift') { targetEditor.session.setMode("ace/mode/swift"); }
 }
 
 

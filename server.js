@@ -77,10 +77,13 @@ app.use('/', require('./routes'));
 
 io.on('connection',(socket)=>{
   socket.on('join-room',async (roomId,userId,userName)=>{
-    joinRoom(socket,roomId,userId);
+    await joinRoom(socket,roomId,userId);
+    socket.on('emmiting-my-editor',(userName,MyEditor)=>{
+        socket.broadcast.to(roomId).emit('emmiting-editor-others',socket.id,userName,MyEditor);
+    });
   });
 });
-module.exports = connections;
+
 
 
 server.listen(port, (err) => {

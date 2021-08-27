@@ -74,11 +74,13 @@ app.use(customMware.setFlash);
 app.use('/', require('./routes'));
 
 //------------------sockets---------------------
+
 io.on('connection',(socket)=>{
-  socket.on('join-room',(roomId,userId)=>{
+  socket.on('join-room',async (roomId,userId,userName)=>{
     joinRoom(socket,roomId,userId);
-  })
+  });
 });
+module.exports = connections;
 
 
 server.listen(port, (err) => {

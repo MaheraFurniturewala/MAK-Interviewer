@@ -1,39 +1,30 @@
-
-
-let editor;
-//inside window.onload fn configure our editor
-// to initialize thee ace editor
+let MyEditor;
 window.onload = function () {
-    editor = ace.edit("editor");
-    const curMgr = new AceCollabExt.AceMultiCursorManager(editor.getSession());
-    curMgr.addCursor("uid1", "User 1", "orange", {row: 0, column: 10});
-    curMgr.setCursor("uid1", 10);
-
-
-    //arg is  the id of the div where we want to keep our editor
-    editor.setTheme("ace/theme/monokai");
-    editor.session.setMode("ace/mode/c_cpp");
-    editor.setOptions({
+    MyEditor = ace.edit("editor");
+    MyEditor.setTheme("ace/theme/monokai");
+    MyEditor.session.setMode("ace/mode/c_cpp");
+    MyEditor.setOptions({
         fontSize: "10pt"
       });
 }
+
 const socket = io();
 socket.on('connect',()=>{
-    socket.emit('join-room',roomId,userId);
+    socket.emit('join-room',roomId,userId,userName);
 });
 
-//configure editor mode whenever language will be  changed from the dropdown
-// from onchange attribute in dropdown
+
+
 function changeLanguage() {
     let language = $("#languages").val();
     // console.log(language);
 
-    if (language == 'c' || language == 'cpp') { editor.session.setMode("ace/mode/c_cpp"); }
-    else if (language == 'python') { editor.session.setMode("ace/mode/python"); }
-    else if (language == 'java') { editor.session.setMode("ace/mode/java"); }
-    else if (language == 'ruby') { editor.session.setMode("ace/mode/ruby"); }
-    else if (language == 'kotlin') { editor.session.setMode("ace/mode/kotlin"); }
-    else if (language == 'swift') { editor.session.setMode("ace/mode/swift"); }
+    if (language == 'c' || language == 'cpp') { MyEditor.session.setMode("ace/mode/c_cpp"); }
+    else if (language == 'python') { MyEditor.session.setMode("ace/mode/python"); }
+    else if (language == 'java') { MyEditor.session.setMode("ace/mode/java"); }
+    else if (language == 'ruby') { MyEditor.session.setMode("ace/mode/ruby"); }
+    else if (language == 'kotlin') { MyEditor.session.setMode("ace/mode/kotlin"); }
+    else if (language == 'swift') { MyEditor.session.setMode("ace/mode/swift"); }
 }
 
 

@@ -1,57 +1,76 @@
-    <link rel="stylesheet" href="/css/editor.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-      <nav>
-        <div class="left">
-          <div class="date">Date</div>
-          <div class="room-name">Room</div>
-          <div class="end-interview">End Interview</div>
-        </div>
-        <div class="right">
-          <div class="output">Output</div>
-          <div class="notes">Notes</div>
-          <div class="make-call">Make Call</div>
-          <div class="invite">Invite</div>
-          <div class="profile">Profile</div>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <div class="editor" id="editor"></div>
-      <div class="output"></div>
-    </main>
-    <section class="control-panel">
-      <div class=" button-run-container">
-        <button class="btn" onclick="executeCode()">Run</button>
-      </div>
-      <div class="language-selection">Select Language:
-        <select class="languages" id="languages" onchange="changeLanguage()">
-            <option value="cpp">C++</option>
-            <option value="c">C</option>
-            <option value="py">Python</option>
-            <option value="java">Java</option>
-            <option value="rb">Ruby</option>
-            <option value="kt">Kotlin</option>
-            <option value="swift">Swift</option>
-        </select>
-      </div>
-      <div class="settings">
-        <a href="#"><i class="fa fa-cog fa-2x" style="color: white;" aria-hidden="true"></i></a>
-      </div>
-    </div>
+<link rel="stylesheet" href="/css/editor.css">
+<link rel="stylesheet" href="/css/chat.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+<nav>
+  <div class="left">
+    <div class="date">Date</div>
+    <div class="room-name">Room</div>
+    <div class="end-interview">End Interview</div>
+  </div>
+  <div class="right">
+    <div class="output">Output</div>
+    <div class="notes">Notes</div>
+    <div class="make-call">Make Call</div>
+    <div class="invite">Invite</div>
+    <div class="profile">Profile</div>
+  </div>
+</nav>
+</header>
+<main>
+  <div class="editor" id="editor"></div>
+  <div class="output"></div>
+</main>
+<section class="control-panel">
+  <div class=" button-run-container">
+    <button class="btn" onclick="executeCode()">Run</button>
+  </div>
+  <div class="language-selection">Select Language:
+    <select class="languages" id="languages" onchange="changeLanguage()">
+      <option value="cpp">C++</option>
+      <option value="c">C</option>
+      <option value="py">Python</option>
+      <option value="java">Java</option>
+      <option value="rb">Ruby</option>
+      <option value="kt">Kotlin</option>
+      <option value="swift">Swift</option>
+    </select>
+  </div>
+  <div class="settings">
+    <a href="#"><i class="fa fa-cog fa-2x" style="color: white;" aria-hidden="true"></i></a>
+  </div>
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ ChatBox</button>
+</div>
+
+  </div>
 </section>
 
-    <script src="\socket.io\socket.io.js"></script> 
-    <script>
-      
-        const roomId = "<%= roomId %>"
-        const userId = "<%= locals.user.id %>"
-        const userName  = "<%= locals.user.name %>"
-        
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <header>
+    <span style="color: white;">Chat</span>
+  </header>
+  <p></p>
+  <div class="content">
+    <div class="body">
+  </div>
+</div>
 
-      </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script src="/js/lib/ace/ace.js"></script>
-    <script src="/js/lib/ace/theme-monokai.js"></script>
-    <script src="/js/editor/editor.js"></script>
-    <script src="/js/lib/ace-collab-ext/dist/umd/ace-collab-ext.js"></script>
+
+<script src="\socket.io\socket.io.js"></script>
+<script>
+
+  const roomId = "<%= roomId %>"
+  const userId = "<%= locals.user.id %>"
+  const userName = "<%= locals.user.name %>"
+
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="/js/lib/ace/ace.js"></script>
+<script src="/js/lib/ace/theme-monokai.js"></script>
+<script src="/js/editor/editor.js"></script>
+<script src="/js/editor/chat.js"></script>
+<script src="/js/lib/ace-collab-ext/dist/umd/ace-collab-ext.js"></script>

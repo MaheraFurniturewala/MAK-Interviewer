@@ -1,4 +1,5 @@
 const express = require('express');
+const env = require('./config/environment');
 const port = process.env.PORT || 8000;
 const app = express();
 const server = require('http').Server(app);
@@ -16,10 +17,12 @@ const MongoStore=require('connect-mongo')(session);
 const customMware = require('./config/middleware');
 const expressLayouts = require('express-ejs-layouts');
 const {joinRoom} = require('./controllers/socket_controllers');
+const path = require('path');
+
 //setting up scss middleware
 app.use(sassMiddleware({
-    src: './assets/scss',
-    dest: './assets/css',
+    src: path.join(__dirname, env.asset_path,'scss'),
+    dest: path.join(__dirname, env.asset_path,'css'),
     debug: true,
     outputStyle:'extended',
     prefix: '/css'
@@ -28,7 +31,7 @@ app.use(sassMiddleware({
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
-app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 app.use(expressLayouts);
 // extract style and scripts from sub pages into the layout
 app.set('layout extractStyles', true);
@@ -40,7 +43,7 @@ app.set('views', './views');
 
 app.use(session({
     name: 'mak',
-    secret: 'xyzabc',
+    secret: env.session_cookie_key,
     saveUninitialized: false,
     resave: false,
     cookie: {
@@ -57,7 +60,6 @@ app.use(session({
         }
     )
 }));
-
 
 app.use(passport.initialize());
 app.use(passport.session());

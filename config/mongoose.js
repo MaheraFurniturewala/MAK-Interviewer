@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const env = require('./environment');
 
-mongoose.connect('mongodb://localhost/mak_interviewer_development',
+mongoose.connect(`mongodb://localhost/${env.db}`,
 { 
     useNewUrlParser: true ,
      useUnifiedTopology: true,

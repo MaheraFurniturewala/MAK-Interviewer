@@ -26,13 +26,13 @@ app.use(sassMiddleware({
 }));
 
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 app.use(express.static('./assets'));
 app.use(expressLayouts);
 // extract style and scripts from sub pages into the layout
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
-
 
 // set up the view engine
 app.set('view engine', 'ejs');
@@ -58,10 +58,9 @@ app.use(session({
     )
 }));
 
-app.use(csrf());
+
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 app.use(passport.setAuthenticatedUser);
 
@@ -82,18 +81,15 @@ io.on('connection',(socket)=>{
         socket.broadcast.to(roomId).emit('colab',socket.id,user_name);
     });
     socket.on('change',(e,cursor,user_name)=>{
-        console.log("Inside the change");
         socket.broadcast.to(roomId).emit('change',socket.id,e,user_name);
     });
     socket.on('changeCursor',(user_name,cursor)=>{
         socket.broadcast.to(roomId).emit('changeCursor',socket.id,cursor,user_name);
     });
   });
-
-
 });
 
-
+//--------------------port listen----------------------
 
 server.listen(port, (err) => {
     if(err){

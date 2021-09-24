@@ -2,14 +2,15 @@ const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/users_controller');
 const passport = require('passport');
+const csrf = require('csurf');
 
 
-router.get('/sign-in', usersController.signIn);
-router.get('/sign-up', usersController.signUp);
+router.get('/sign-in', csrf, usersController.signIn);
+router.get('/sign-up', csrf ,usersController.signUp);
 router.get('/sign-out', usersController.destroySession);
-router.post('/create', usersController.create);
-router.get('/verify', usersController.verify);
-router.get('/verify/:token', usersController.verified);
+router.post('/create',csrf, usersController.create);
+router.get('/verify',csrf, usersController.verify);
+router.get('/verify/:token',csrf, usersController.verified);
 router.post('/create-session', passport.authenticate(
     'local',
     { failureRedirect: '/users/sign-in' },
@@ -18,11 +19,11 @@ router.post('/create-session', passport.authenticate(
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/users/sign_in' }), usersController.createSession);
-router.get('/resend-verification-mail-form',usersController.resendVerificationMailForm);
+router.get('/resend-verification-mail-form',csrf,usersController.resendVerificationMailForm);
 router.post('/resend-verification-mail',usersController.resendVerificationMail);
-router.get('/forgot-password-page',usersController.forgotPasswordPage);
-router.post('/forgot-password',usersController.forgotPassword);
-router.get('/reset-password/:token',usersController.resetPasswordPage);
-router.post('/reset-password/:email',usersController.resetPassword);
+router.get('/forgot-password-page',csrf,usersController.forgotPasswordPage);
+router.post('/forgot-password',csrf,usersController.forgotPassword);
+router.get('/reset-password/:token',csrf,usersController.resetPasswordPage);
+router.post('/reset-password/:email',csrf,usersController.resetPassword);
 router.get('/dashboard/:id', passport.checkAuthentication, usersController.dashboard);
 module.exports = router;

@@ -31,7 +31,7 @@ socket.on('colab',(socketId,user_name,initialIndices,initialRows)=>{
 });
 
 targetSession.getDocument().on("change", function(e) {
-    console.log("change")
+   
     socket.emit('change',e,userName);
   });
 
@@ -54,34 +54,34 @@ function changeLanguage() {
 
 
 
-// function executeCode() {
 
-//     var data = JSON.stringify({
-//     "code":editor.getSession().getValue(),
-//     "language":$("#languages").val(),
-//     "input":""
-//     });
+function executeCode() {
+    console.log("Execute");
+    console.log(targetEditor.getSession().getValue());
+    console.log($("#languages").val());
 
-// var config = {
-// method: 'post',
-// url:'/',
-// headers: { 
-// 'Content-Type': 'application/json'
-// },
-// data : data
-// };
+    var data = JSON.stringify({
+    "code":targetEditor.getSession().getValue(),
+    "language":$("#languages").val(),
+    "input":""
+    });
+    console.log("data:"+data);
+    
 
-// axios(config)
-// .then(function (response) {
-// console.log("stay happy")
+var config = {
+method: 'post',
+url:'/compile/compile_code',
+headers: { 
+'Content-Type': 'application/json'
+},
+data : data
+};
+axios(config)
+.then(function (response) {
+    console.log(response);
+})
+.catch(function (error) {
+console.log(error);
 
-// })
-// .catch(function (error) {
-// console.log(error);
-
-// });
-
-
-
-// }
-
+});
+}

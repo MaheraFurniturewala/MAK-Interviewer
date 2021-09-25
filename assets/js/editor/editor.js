@@ -18,13 +18,19 @@ socket.on('connect', () => {
 
 // ---------------function to display output-------------------
 socket.on('displayOutput',(data)=>{
-    console.log(data.output.output);
-    console.log("displayOutput")
-    outputArea = $('#output');
-    console.log(outputArea[0]);
-    outputArea[0].innerHTML = data.output.output;
-    
-})
+    outputArea = document.getElementById('output');
+    outputArea.innerHTML = '';
+    p = document.createElement('p');
+    p.innerHTML =  `<ul style="list-style:none;">
+    <li>${data.output.output}</li>
+    </ul>`; 
+    outputArea.appendChild(p);
+    if(data.output.output.search("Error") != -1 || data.output.output.search("error") != -1){
+        outputArea.style.color = 'red';
+    }else{
+        outputArea.style.color = 'green';
+    }
+});
 
 // -------------making the editor collaborative using delta--------------
 socket.on('colab', (socketId, user_name, initialIndices, initialRows) => {
@@ -90,14 +96,3 @@ function executeCode() {
         });
 }
 
-
-// status: 0,
-// errorCode: 0,
-// error: null,
-// outputType: 0,
-// output: 'Hello world',
-// outputStyle: null,
-// date: '0001-01-01T00:00:00',
-// language: 'cpp',
-// input: '',
-// id: 0

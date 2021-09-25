@@ -161,12 +161,12 @@ main .editor {
   height: 86vh;
   border-right: 5px solid black; }
 
-main .output {
+main .outputWrap {
   width: 50vw;
   height: 86vh;
   background-color: #272822;
   color: white;
-  font: courier;
+  font: consolas, monaco;
   padding-left: 1em;
   padding-top: 1em; }
 

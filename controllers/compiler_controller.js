@@ -1,9 +1,6 @@
 const axios = require('axios');
 
 module.exports.compile = (req,res)=>{
-    console.log("received  post request");
-    console.log("data of the body",req.body);
-    
       
         var config = {
             method: 'post',
@@ -20,12 +17,10 @@ module.exports.compile = (req,res)=>{
             
             axios(config)
             .then(function (response) {
-            console.log("response.data",response.data);
            
-            console.log("response.data.output",response.data.output);
             return res.status(200).json({
                 data:{
-                    data:response.data.output,
+                    output:response.data,
                 },
                 message:"Got output",
             })

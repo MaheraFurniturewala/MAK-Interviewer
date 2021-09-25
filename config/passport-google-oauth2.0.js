@@ -4,7 +4,6 @@ const crypto = require('crypto');
 const User = require('../models/user');
 const env = require('./environment');
 
-
 passport.use(new googleStrategy({
     clientID:env.google_client_id,
     clientSecret: env.google_client_secret,

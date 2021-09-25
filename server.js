@@ -4,31 +4,30 @@ const port = process.env.PORT || 8000;
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-const db = require('./config/mongoose'); 
-// var cookieParser = require('cookie-parser')
+const db = require('./config/mongoose');
 const csrf = require('csurf');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const googleStrategy = require('./config/passport-google-oauth2.0.js');
-const sassMiddleware=require('node-sass-middleware');
+const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const session = require('express-session');
-const MongoStore=require('connect-mongo')(session);
+const MongoStore = require('connect-mongo')(session);
 const customMware = require('./config/middleware');
 const expressLayouts = require('express-ejs-layouts');
-const {joinRoom} = require('./controllers/socket_controllers');
+const { joinRoom } = require('./controllers/socket_controllers');
 const path = require('path');
 
-//setting up scss middleware
+//------------------setting up scss middleware//------------------
 app.use(sassMiddleware({
-    src: path.join(__dirname, env.asset_path,'scss'),
-    dest: path.join(__dirname, env.asset_path,'css'),
+    src: path.join(__dirname, env.asset_path, 'scss'),
+    dest: path.join(__dirname, env.asset_path, 'css'),
     debug: true,
-    outputStyle:'extended',
+    outputStyle: 'extended',
     prefix: '/css'
 }));
 
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static(env.asset_path));
@@ -41,6 +40,7 @@ app.set('layout extractScripts', true);
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+// ------------------creating sessions and session cookies------------------
 app.use(session({
     name: 'mak',
     secret: env.session_cookie_key,
@@ -53,10 +53,10 @@ app.use(session({
         {
             mongooseConnection: db,
             autoRemove: 'disabled'
-        
+
         },
-        function(err){
-            console.log(err ||  'connect-mongodb setup ok');
+        function (err) {
+            console.log(err || 'connect-mongodb setup ok');
         }
     )
 }));
@@ -71,33 +71,40 @@ app.use(flash());
 app.use(customMware.setFlash);
 
 // use express router
-
 app.use('/', require('./routes'));
 
 //------------------sockets---------------------
 
-io.on('connection',(socket)=>{
-  socket.on('join-room', (roomId,userId,userName)=>{
-     joinRoom(socket,roomId,userId);
-     socket.on('colab',(user_name)=>{
-        socket.broadcast.to(roomId).emit('colab',socket.id,user_name);
+io.on('connection', (socket) => {
+    socket.on('join-room', (roomId, userId) => {
+        socket.join(roomId);
+        // console.log(socket.id+" Joined room " + roomId);
+        // console.log("rooooommmmmmsss::::  ",socket.id+"           ");
+        // console.log(socket.rooms);
+        joinRoom(socket, roomId, userId);
+        socket.on('colab', (user_name) => {
+            socket.broadcast.to(roomId).emit('colab', socket.id, user_name);
+        });
+        socket.on('change', (e, cursor, user_name) => {
+            socket.broadcast.to(roomId).emit('change', socket.id, e, user_name);
+        });
+        socket.on('changeCursor', (user_name, cursor) => {
+            socket.broadcast.to(roomId).emit('changeCursor', socket.id, cursor, user_name);
+        });
+        socket.on('outputReceived',(data)=>{
+            console.log("outputReceived");
+            io.to(roomId).emit('displayOutput',data);
+        });
     });
-    socket.on('change',(e,cursor,user_name)=>{
-        socket.broadcast.to(roomId).emit('change',socket.id,e,user_name);
-    });
-    socket.on('changeCursor',(user_name,cursor)=>{
-        socket.broadcast.to(roomId).emit('changeCursor',socket.id,cursor,user_name);
-    });
-  });
 });
 
 //--------------------port listen----------------------
 
 server.listen(port, (err) => {
-    if(err){
+    if (err) {
         console.log(`error in running server on port: ${port}`);
         return;
-    }else{
+    } else {
         console.log(`Server running on port : ${port}`);
     }
 });

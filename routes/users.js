@@ -2,10 +2,8 @@ const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/users_controller');
 const passport = require('passport');
-// const csrf = require('csurf');
 const csurf = require('csurf')
 const csrf = csurf()
-
 
 router.get('/sign-in', csrf, usersController.signIn);
 router.get('/sign-up', csrf ,usersController.signUp);

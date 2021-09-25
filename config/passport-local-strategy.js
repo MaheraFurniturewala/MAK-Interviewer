@@ -14,7 +14,6 @@ passport.use(new LocalStrategy({
             }
             if (user) {
                 bcrypt.compare(password, user.password, function (err, isMatch) {
-                    console.log(isMatch);
                     if (isMatch == false) {
                         req.flash('error', 'Wrong Username/Password');
                         return done(null, false);
@@ -54,7 +53,7 @@ passport.deserializeUser(function (id, done) {
 
 // check if the user is authenticated
 passport.checkAuthentication = function (req, res, next) {
-    console.log("inside check authentication");
+    // console.log("inside check authentication");
     if (req.isAuthenticated()) {
         return next();
     }
@@ -63,7 +62,7 @@ passport.checkAuthentication = function (req, res, next) {
 }
 
 passport.setAuthenticatedUser = function (req, res, next) {
-      console.log("Inside setAuthenticatedUser");
+    //   console.log("Inside setAuthenticatedUser");
     if (req.isAuthenticated()) {
         res.locals.user = req.user;
     }

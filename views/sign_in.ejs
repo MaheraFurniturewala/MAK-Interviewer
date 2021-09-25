@@ -1,37 +1,56 @@
-    
-  <link rel="stylesheet" type="text/css" href="/css/sign_in.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-  <link rel="stylesheet" href="/css/google-btn.css" />
-    <div class="form">
-        <form class="form_sign-in" method="POST" action="/users/create-session">
-        <h2>Login</h2>
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <div class="input">
-            <div class="inputBox">
-            <label for="email" >Email</label>
-            <input class="form__input" type="text" placeholder="Email" name="email" />
+<link rel="stylesheet" type="text/css" href="/css/sign_in.css" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="//fonts.googleapis.com/css?family=Open+Sans"
+/>
+<link rel="stylesheet" href="/css/google-btn.css" />
+<div class="form">
+  <form class="form_sign-in" method="POST" action="/users/create-session">
+    <h2>Login</h2>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <div class="input">
+      <div class="inputBox">
+        <label for="email">Email</label>
+        <input
+          class="form__input"
+          type="text"
+          placeholder="Email"
+          name="email"
+        />
+      </div>
+      <div class="inputBox">
+        <label for="password">Password</label>
+        <input
+          class="form__input"
+          type="password"
+          placeholder="Password"
+          name="password"
+        />
+      </div>
+
+      <div class="inputBox">
+        <input class="form__input button" type="submit" value="Sign In" />
+      </div>
+      <a href="/users/auth/google">
+        <div class="google-btn">
+          <div class="google-icon-wrapper">
+            <img
+              class="google-icon"
+              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+            />
           </div>
-        <div class="inputBox">
-            <label for="password">Password</label>
-            <input class="form__input" type="password" placeholder="Password" name="password" />
+          <p class="btn-text"><b>Sign in with google</b></p>
         </div>
-       
-        <div class="inputBox">
-            <input class="form__input button" type="submit" value="Sign In" >
-        </div>
-        <a href="/users/auth/google">
-            <div class="google-btn">
-              <div class="google-icon-wrapper">
-                <img class="google-icon"
-                  src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
-              </div>
-              <p class="btn-text"><b>Sign in with google</b></p>
-            </div>
-          </a>
+      </a>
     </div>
-    <p class="forget">Forgot Password ? <a href="/users/forgot-password-page">Click Here</a></p>
+    <p class="forget">
+      Forgot Password ? <a href="/users/forgot-password-page">Click Here</a>
+    </p>
     <p class="forget">New here? <a href="/users/sign-up">Create account</a></p>
   </form>
-  
 </div>

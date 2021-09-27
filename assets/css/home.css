@@ -11,23 +11,70 @@ body {
 .landing-page {
   background-color: #253340; }
 
-navbar {
+.navbar {
   display: flex;
   justify-content: centre;
   align-items: center; }
+  .navbar .right {
+    width: 60vw; }
+  .navbar .left {
+    width: 30vw; }
+    .navbar .left .logo {
+      padding: 1em; }
 
-.left {
-  width: 50vw;
-  margin-left: 2em; }
+.nav-list li a {
+  text-decoration: none;
+  font-size: 18px;
+  width: inherit;
+  text-align: center;
+  display: inline-block;
+  color: #0085FF;
+  transition: 0.5s;
+  overflow: hidden;
+  position: relative;
+  padding: 1px 5px;
+  margin: 0 10px;
+  letter-spacing: 1px; }
+
+.nav-list li a:before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid #21ebff;
+  border-left: 3px solid #21ebff;
+  transition: 0.5s; }
+
+.nav-list li a:hover:before {
+  width: 100%;
+  height: 100%; }
+
+.nav-list li a:after {
+  content: ' ';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  border-bottom: 3px solid #21ebff;
+  border-right: 3px solid #21ebff;
+  transition: 0.5s; }
+
+.nav-list li a:hover:after {
+  width: 100%;
+  height: 100%; }
 
 .nav-list {
   display: flex;
-  justify-content: centre;
-  align-items: center; }
+  justify-content: right;
+  align-items: center;
+  padding: 0px; }
 
 .nav-list li {
   list-style: none;
-  margin: 1.5em; }
+  margin: 1em; }
 
 .nav-list li a {
   text-decoration: none;
@@ -62,7 +109,7 @@ navbar {
 .social-links {
   position: fixed;
   right: 0;
-  top: 40vh; }
+  top: 50vh; }
 
 .text {
   color: white;

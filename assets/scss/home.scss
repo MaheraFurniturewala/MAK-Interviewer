@@ -94,6 +94,7 @@ body{
     display: flex;
 }
 .main-title{
+    padding-left:25px;
     font-size: 5em;
     margin-top:4rem;
 }
@@ -124,17 +125,17 @@ body{
 
 .text{
     color:white;
-    font-size:1.5em;
+    font-size:1.2em;
     padding: 2em;
 }
 .text a{
     position:relative;
     display:inline-block;
     height:60px;
-    top:3em;
+    top:2.5em;
     color:white;
     text-decoration:none;
-    margin-top: 60px;
+    margin-top: 50px;
     padding-top:15px;
     padding-left: 2em;
     /* border:2px solid black; */

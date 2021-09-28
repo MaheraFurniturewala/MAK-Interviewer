@@ -96,3 +96,7 @@ function executeCode() {
         });
 }
 
+// -----------------setting the date using moment.js--------------
+let dateCont = document.getElementsByClassName('date');
+let currentDate = moment().format('MMMM Do YYYY');
+dateCont[0].innerText=`${currentDate}`;

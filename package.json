@@ -36,6 +36,7 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.2",
+    "moment": "^2.29.1",
     "mongoose": "^5.13.5",
     "node-sass-middleware": "^0.11.0",
     "nodemailer": "^6.6.3",

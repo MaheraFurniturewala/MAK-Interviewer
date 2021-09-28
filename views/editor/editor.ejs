@@ -2,29 +2,28 @@
 <link rel="stylesheet" href="/css/chat.css">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
   integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+  
 <nav>
   <div class="left">
     <div class="date">Date</div>
     <div class="room-name">Room</div>
     <a href="/users/dashboard/<%=user.id%>">
-    <div class="end-interview">End Interview</div>
-  </a>
+      <div class="end-interview">End Interview</div>
+    </a>
   </div>
   <div class="right">
-    <div class="output">Output</div>
     <div class="notes">Notes</div>
     <div class="make-call">Make Call</div>
     <div class="invite">Invite</div>
-    <div class="profile">Profile</div>
   </div>
 </nav>
 </header>
 <main>
   <div class="editor" id="editor"></div>
   <div class="outputWrap"><span>Output:</span>
-  <div class="output" id="output">
+    <div class="output" id="output">
+    </div>
   </div>
-</div>
 </main>
 <section class="control-panel">
   <div class=" button-run-container">
@@ -44,21 +43,26 @@
   <div class="settings">
     <a href="#"><i class="fa fa-cog fa-2x" style="color: white;" aria-hidden="true"></i></a>
   </div>
-<div id="main">
-  <button class="openbtn" onclick="openNav()">☰ ChatBox</button>
-</div>
+  <div id="main">
+    <button class="openbtn" onclick="openNav()">☰ ChatBox</button>
+  </div>
 
   </div>
 </section>
 
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <header>
-    <span style="color: white;">Chat</span>
-  </header>
   <p></p>
   <div class="content">
     <div class="body">
+      <ol id="messages" class="chat__messages"></ol>
+    </div>
+    <div class="chat__footer">
+      <form id="message-form">
+        <input name="message"type="text"  autofocus autocomplete="off" />
+        <button id="submit-btn">Send</button>
+      </form>
+    </div>
   </div>
 </div>
 

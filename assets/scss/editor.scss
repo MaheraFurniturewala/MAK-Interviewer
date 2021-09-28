@@ -17,15 +17,20 @@ nav{
 nav .left{
     display: flex;
     width:50vw;
+    .date,.room-name{
+        margin:auto 3em;
+        color: #ffff;
+    }
+    .end-interview{
+        margin:auto 3em;
+        color:red;
+    }
 }
 nav .right{
     display: flex;
     width:50vw;
 }
-nav .left div{
-    margin:auto 3em;
-    color: #ffff;
-}
+
 nav .right div{
     margin:auto 3em;
     color: #ffff;
@@ -85,4 +90,10 @@ section.control-panel .button-run-container{
     border:1px solid white;
    padding:0.2em;
    background: #272822;
+}
+
+a {
+    text-decoration: none;
+    padding:0.8em;
+    
 }

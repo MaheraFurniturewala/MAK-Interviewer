@@ -8,6 +8,7 @@ router.get('/', homeController.home);
 router.use('/users',require('./users.js'));
 router.use('/meet',require('./new_meeting.js'));
 router.use('/compile',require('./compiler.js'));
+router.use('/chat',require('./chat.js'));
 
 
 

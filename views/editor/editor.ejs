@@ -54,13 +54,13 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
   <p></p>
   <div class="content">
-    <div class="body">
-      <ol id="messages" class="chat__messages"></ol>
+    <div class="body" id="chat-body">
+      <ul id="messages" class="chat__messages"></ul>
     </div>
     <div class="chat__footer">
-      <form id="message-form">
+      <form id="message-form" method="post" action="/chat/newMessage">
         <input name="message"type="text"  autofocus autocomplete="off" />
-        <button id="submit-btn">Send</button>
+        <button onClick="sendMessage" id="submit-btn">Send</button>
       </form>
     </div>
   </div>

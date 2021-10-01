@@ -10,9 +10,11 @@ function openNav() {
 { 
   let sendMessage = function(){
     let newMessageForm = $('#message-form');
-
+    
     newMessageForm.submit(function(e){
-        e.preventDefault();
+      console.log("Message received");
+      console.log()
+        e.preventDefault(newMessageForm.serialize());
 
         $.ajax({
             type: 'post',
@@ -35,7 +37,6 @@ let newMessageDom = function(message){
                   <br>
           </li>`)
 }
-
 sendMessage();
 
 }

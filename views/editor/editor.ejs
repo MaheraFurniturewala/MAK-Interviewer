@@ -58,9 +58,9 @@
       <ul id="messages" class="chat__messages"></ul>
     </div>
     <div class="chat__footer">
-      <form id="message-form" method="post" action="/chat/newMessage">
-        <input name="message"type="text"  autofocus autocomplete="off" />
-        <button onClick="sendMessage" id="submit-btn">Send</button>
+      <form id="message-form" method="POST" action="/chat/newMessage">
+        <input name="message" type="text"  autofocus autocomplete="off" />
+        <input type=submit id="submit-btn">Send</input>
       </form>
     </div>
   </div>

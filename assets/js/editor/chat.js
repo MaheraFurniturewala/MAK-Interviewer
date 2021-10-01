@@ -31,9 +31,9 @@ function openNav() {
 }
 
 let newMessageDom = function(message){
-  return $(`<li id="message-${message}">
+  return $(`<li id="message-${message.content}">
               <p>
-                  ${ message }
+                  ${ message.content }
                   <br>
           </li>`)
 }

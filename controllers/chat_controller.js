@@ -2,7 +2,7 @@ const Message = require('../models/messages');
 
 module.exports.createMessage = async function(req, res){
     try{
-        console.log(req.body);
+        console.log(req.body.message);
         let message = await Message.create({
             content: req.body.message,
             user: req.user._id

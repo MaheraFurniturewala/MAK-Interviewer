@@ -1,0 +1,15 @@
+[0mGET /users/dashboard/614dc045013567746c453bad [36m304[0m 23.317 ms - -[0m
+[0mGET /js/lib/ace/ace.js [36m304[0m 6.677 ms - -[0m
+[0mGET /js/lib/ace/theme-monokai.js [36m304[0m 6.180 ms - -[0m
+[0mGET /js/editor/editor.js [36m304[0m 6.026 ms - -[0m
+[0mGET /js/lib/ace-collab-ext/dist/umd/ace-collab-ext.js [36m304[0m 5.471 ms - -[0m
+[0mGET /users/dashboard/614dc045013567746c453bad [36m304[0m 23.214 ms - -[0m
+[0mGET /js/lib/ace/ace.js [36m304[0m 5.399 ms - -[0m
+[0mGET /js/lib/ace/theme-monokai.js [36m304[0m 7.479 ms - -[0m
+[0mGET /js/editor/editor.js [36m304[0m 6.942 ms - -[0m
+[0mGET /js/lib/ace-collab-ext/dist/umd/ace-collab-ext.js [36m304[0m 6.246 ms - -[0m
+[0mGET /users/dashboard/614dc045013567746c453bad [36m304[0m 25.409 ms - -[0m
+[0mGET /js/lib/ace/ace.js [36m304[0m 5.455 ms - -[0m
+[0mGET /js/lib/ace/theme-monokai.js [36m304[0m 7.346 ms - -[0m
+[0mGET /js/editor/editor.js [36m304[0m 7.021 ms - -[0m
+[0mGET /js/lib/ace-collab-ext/dist/umd/ace-collab-ext.js [36m304[0m 6.550 ms - -[0m

@@ -1,5 +1,6 @@
 const express = require('express');
 const env = require('./config/environment');
+const logger = require('morgan');
 const port = process.env.PORT || 8000;
 const app = express();
 const server = require('http').Server(app);
@@ -19,16 +20,20 @@ const { joinRoom } = require('./controllers/socket_controllers');
 const path = require('path');
 
 //------------------setting up scss middleware//------------------
-app.use(sassMiddleware({
-    src: path.join(__dirname, env.asset_path, 'scss'),
-    dest: path.join(__dirname, env.asset_path, 'css'),
-    debug: true,
-    outputStyle: 'extended',
-    prefix: '/css'
-}));
+if(env.name == 'development'){ 
+    app.use(sassMiddleware({
+        src: path.join(__dirname, env.asset_path, 'scss'),
+        dest: path.join(__dirname, env.asset_path, 'css'),
+        debug: true,
+        outputStyle: 'extended',
+        prefix: '/css'
+    }));
+}
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(logger(env.morgan.mode, env.morgan.options));
 
 app.use(express.static(env.asset_path));
 app.use(expressLayouts);

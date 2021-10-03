@@ -83,9 +83,6 @@ app.use('/', require('./routes'));
 io.on('connection', (socket) => {
     socket.on('join-room', (roomId, userId) => {
         socket.join(roomId);
-        // console.log(socket.id+" Joined room " + roomId);
-        // console.log("rooooommmmmmsss::::  ",socket.id+"           ");
-        // console.log(socket.rooms);
         joinRoom(socket, roomId, userId);
         socket.on('colab', (user_name) => {
             socket.broadcast.to(roomId).emit('colab', socket.id, user_name);

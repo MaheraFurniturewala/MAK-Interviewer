@@ -3,6 +3,7 @@ const env = require('./config/environment');
 const logger = require('morgan');
 const port = process.env.PORT || 8000;
 const app = express();
+require('./config/view-helpers')(app);
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const db = require('./config/mongoose');

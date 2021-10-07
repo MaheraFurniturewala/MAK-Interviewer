@@ -10,9 +10,9 @@ const accessLogStream = rfs.createStream('access.log',{
     path: logDirectory,
 });
 
-const development = {
-    name : 'development',
-    asset_path : './assets',
+const production = {
+    name : 'production',
+    asset_path : './public/assets',
     session_cookie_key :'xyzabc',
     db: 'mongodb+srv://mahera1:mahera1@cluster0.k05c5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     smtp :{
@@ -27,7 +27,7 @@ const development = {
     },
     google_client_id:'736952970227-ik81a2s746sogr6nar8i6pl9fgj1fbr0.apps.googleusercontent.com',
     google_client_secret: '5_tegMySOYY-Q0cTzOa7Qarg',
-    google_call_back_url: "http://localhost:8000/users/auth/google/callback",
+    google_call_back_url: "https://mak-interviewer.herokuapp.com//users/auth/google/callback",
     morgan : {
         mode: 'dev',
         options: {stream: accessLogStream}
@@ -35,29 +35,29 @@ const development = {
 }
 
 
-const production = {
-    name : 'production',
-    asset_path : process.env.MAK_ASSET_PATH,
-    session_cookie_key : process.env.MAK_SESSION_COOKIE_KEY,
-    db:'mongodb+srv://mahera1:mahera1@cluster0.k05c5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-    smtp :{
-        service: process.env.MAK_SMTP_SERVICE,
-        host: process.env.MAK_SMTP_HOST,
-        port: parseInt(process.env.MAK_SMTP_PORT),
-        secure: Boolean(process.env.MAK_SMTP_SECURE),
-        auth: {
-            user: process.env.MAK_SMTP_AUTH_USER,
-            pass: process.env.MAK_SMTP_AUTH_PASS
-        }
-    },
-    google_client_id : process.env.MAK_GOOGLE_CLIENT_ID,
-    google_client_secret: process.env.MAK_GOOGLE_CLIENT_SECRET,
-    google_call_back_url: process.env.MAK_GOOGLE_CALL_BACK_URL,
-    morgan : {
-        mode: 'combined',
-        options: {stream: accessLogStream}
-    }
-}
+// const prdeveoduction = {
+//     name : 'production',
+//     asset_path : process.env.MAK_ASSET_PATH,
+//     session_cookie_key : process.env.MAK_SESSION_COOKIE_KEY,
+//     db:'mongodb+srv://mahera1:mahera1@cluster0.k05c5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+//     smtp :{
+//         service: process.env.MAK_SMTP_SERVICE,
+//         host: process.env.MAK_SMTP_HOST,
+//         port: parseInt(process.env.MAK_SMTP_PORT),
+//         secure: Boolean(process.env.MAK_SMTP_SECURE),
+//         auth: {
+//             user: process.env.MAK_SMTP_AUTH_USER,
+//             pass: process.env.MAK_SMTP_AUTH_PASS
+//         }
+//     },
+//     google_client_id : process.env.MAK_GOOGLE_CLIENT_ID,
+//     google_client_secret: process.env.MAK_GOOGLE_CLIENT_SECRET,
+//     google_call_back_url: process.env.MAK_GOOGLE_CALL_BACK_URL,
+//     morgan : {
+//         mode: 'combined',
+//         options: {stream: accessLogStream}
+//     }
+// }
 
 module.exports = production;
 // (process.env.MAK_NODE_ENV) === 'production' ? production  : development;

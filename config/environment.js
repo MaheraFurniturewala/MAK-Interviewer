@@ -44,6 +44,7 @@ const production = {
         service: process.env.MAK_SMTP_SERVICE,
         host: process.env.MAK_SMTP_HOST,
         port: parseInt(process.env.MAK_SMTP_PORT),
+        ignoreTLS: false,
         secure: Boolean(process.env.MAK_SMTP_SECURE),
         auth: {
             user: process.env.MAK_SMTP_AUTH_USER,

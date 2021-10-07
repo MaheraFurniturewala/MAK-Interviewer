@@ -5,6 +5,7 @@ const env = require('./environment');
 
 
 let transporter = nodemailer.createTransport(env.smtp);
+console.log("=================",transporter)
 
 
 let renderTemplate = (data, relativePath) => {

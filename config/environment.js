@@ -37,7 +37,7 @@ const development = {
 
 const production = {
     name : 'production',
-    asset_path : './public/assets',
+    asset_path : process.env.MAK_ASSET_PATH,
     session_cookie_key : process.env.MAK_SESSION_COOKIE_KEY,
     db: process.env.MAK_DB,
     smtp :{
@@ -59,5 +59,4 @@ const production = {
     }
 }
 
-module.exports = production;
-// eval(process.env.MAK_NODE_ENV) == 'production' ? production  : development;
+module.exports = eval(process.env.MAK_NODE_ENV) === 'production' ? production  : development;

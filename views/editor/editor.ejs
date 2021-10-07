@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="/css/editor.css" >
-<link rel="stylesheet" href="/css/chat.css">
+<link rel="stylesheet" href="<%= assetPath('css/editor.css') %>">
+<link rel="stylesheet" href="<%= assetPath('css/chat.css') %>">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
   integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
   
@@ -76,12 +76,10 @@
 
 
 </script>
-<script src="/js/lib/moment/moment.js"></script>
+<script src="<%= assetPath('js/lib/moment/moment.js') %>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.min.js"></script>
-<script src="/js/lib/ace/ace.js"></script>
-<script src="/js/lib/ace/theme-monokai.js"></script>
-<script src="/js/editor/editor.js"></script>
-<script src="/js/editor/chat.js"></script>
-<script src="/js/lib/ace-collab-ext/dist/umd/ace-collab-ext.js"></script>
+<script src="https://pagecdn.io/lib/ace/1.4.12/ace.js" crossorigin="anonymous" integrity="sha256-Q9hnBpgBFstzZOr+OKFOWZWfcF5nFXO8Qz48Nmndo6U=" ></script>
+<script src="<%= assetPath('js/editor/editor.js') %>"></script>
+<script src="<%= assetPath('js/editor/chat.js') %>"></script>
+<script src="<%= assetPath('js/lib/ace-collab-ext/dist/umd/ace-collab-ext.js') %>"></script>

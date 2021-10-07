@@ -37,7 +37,7 @@ const development = {
 
 const production = {
     name : 'production',
-    asset_path : './assets',
+    asset_path : './public/assets',
     session_cookie_key : process.env.MAK_SESSION_COOKIE_KEY,
     db: process.env.MAK_DB,
     smtp :{

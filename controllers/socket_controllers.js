@@ -19,7 +19,7 @@ try {
         room.participants.push(userId);
         room = await room.save();
     }
-    console.log(room);
+
 
     let userResult = user.rooms.filter((rooms_ID)=>rooms_ID==room.id);
     if(userResult.length==0){

@@ -14,7 +14,7 @@ const development = {
     name : 'development',
     asset_path : './assets',
     session_cookie_key :'xyzabc',
-    db: 'mak_interviewer_development',
+    db: 'mongodb+srv://mahera1:mahera1@cluster0.k05c5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     smtp :{
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -39,7 +39,7 @@ const production = {
     name : 'production',
     asset_path : process.env.MAK_ASSET_PATH,
     session_cookie_key : process.env.MAK_SESSION_COOKIE_KEY,
-    db: process.env.MAK_DB,
+    db:'mongodb+srv://mahera1:mahera1@cluster0.k05c5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     smtp :{
         service: process.env.MAK_SMTP_SERVICE,
         host: process.env.MAK_SMTP_HOST,
@@ -59,4 +59,5 @@ const production = {
     }
 }
 
-module.exports = eval(process.env.MAK_NODE_ENV) === 'production' ? production  : development;
+module.exports = production;
+// (process.env.MAK_NODE_ENV) === 'production' ? production  : development;

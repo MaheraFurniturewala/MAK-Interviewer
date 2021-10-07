@@ -62,8 +62,6 @@
     "@convergencelabs/ace-collab-ext": "^0.6.0",
     "gulp": "^4.0.2",
     "nodemon": "^2.0.12"
-  },
-  "engines": {
-    "node": ">=10.0.0"
   }
+ 
 }

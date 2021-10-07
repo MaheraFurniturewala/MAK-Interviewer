@@ -27,7 +27,7 @@ const production = {
     },
     google_client_id:'736952970227-ik81a2s746sogr6nar8i6pl9fgj1fbr0.apps.googleusercontent.com',
     google_client_secret: '5_tegMySOYY-Q0cTzOa7Qarg',
-    google_call_back_url: "https://mak-interviewer.herokuapp.com//users/auth/google/callback",
+    google_call_back_url: "https://mak-interviewer.herokuapp.com/users/auth/google/callback",
     morgan : {
         mode: 'dev',
         options: {stream: accessLogStream}

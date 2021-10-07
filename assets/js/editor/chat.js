@@ -45,3 +45,5 @@ function closeNav() {
   };
   sendMessage();
 }
+
+console.log("EDITOr - CHAT");

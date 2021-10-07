@@ -60,7 +60,7 @@ targetSession.selection.on('changeCursor', function (e) {
 //   --------------select language dropdown--------------
 function changeLanguage() {
     let language = $("#languages").val();
-
+    console.log(language);
 
     if (language == 'c' || language == 'cpp') { targetEditor.session.setMode("ace/mode/c_cpp"); }
     else if (language == 'python') { targetEditor.session.setMode("ace/mode/python"); }
@@ -100,3 +100,4 @@ function executeCode() {
 let dateCont = document.getElementsByClassName('date');
 let currentDate = moment().format('MMMM Do YYYY');
 dateCont[0].innerText=`${currentDate}`;
+console.log("EDITOr - editor");

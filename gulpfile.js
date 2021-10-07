@@ -7,21 +7,20 @@ const uglify = require('gulp-uglify-es').default;
 const imagemin = require('gulp-imagemin');
 const del = require('del');
 
-//-----gulp tasks--------
 
-gulp.task('css',function(done){
-    console.log('minifying cs...');
+
+gulp.task('css',  function(done){
+    console.log('minifying css...');
     gulp.src('./assets/sass/**/*.scss')
-    .pipe(sass()) //sass to css
-    .pipe(cssnano()) //minify css
+    .pipe(sass())
+    .pipe(cssnano())
     .pipe(gulp.dest('./assets.css'));
 
-    //changing naming convention
      gulp.src('./assets/**/*.css')
-    .pipe(rev()) //renaming
-    .pipe(gulp.dest('./public/assets')) //for production
-    .pipe(rev.manifest({
-        cwd: 'public',
+    .pipe(rev())
+    .pipe(gulp.dest('./public/assets'))
+    .pipe( rev.manifest('public/assets/rev-manifest.json',{
+        base: process.cwd()+'/public/assets',
         merge: true
     }))
     .pipe(gulp.dest('./public/assets'));
@@ -29,18 +28,18 @@ gulp.task('css',function(done){
 });
 
 
-gulp.task('js', function(done){
+gulp.task('js',  function(done){
     console.log('minifying js...');
      gulp.src('./assets/**/*.js')
-    .pipe(uglify())
-    .pipe(rev())
+    .pipe( uglify())
+    .pipe( rev())
     .pipe(gulp.dest('./public/assets'))
-    .pipe(rev.manifest({
-        cwd: 'public',
+    .pipe(  rev.manifest('public/assets/rev-manifest.json',{
+        base: process.cwd()+'/public/assets',
         merge: true
     }))
     .pipe(gulp.dest('./public/assets'));
-    done()
+     done()
 });
 
 
@@ -50,8 +49,8 @@ gulp.task('images', function(done){
     .pipe(imagemin())
     .pipe(rev())
     .pipe(gulp.dest('./public/assets'))
-    .pipe(rev.manifest({
-        cwd: 'public',
+    .pipe(rev.manifest('public/assets/rev-manifest.json',{
+        base: process.cwd()+'/public/assets',
         merge: true
     }))
     .pipe(gulp.dest('./public/assets'));

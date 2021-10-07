@@ -15,12 +15,14 @@ try {
         socket.join(roomId);
     }
     let roomResult = room.participants.filter((user)=>user==userId);
-    if(roomResult.length=0){
+    if(roomResult.length==0){
         room.participants.push(userId);
         room = await room.save();
     }
+    console.log(room);
+
     let userResult = user.rooms.filter((rooms_ID)=>rooms_ID==room.id);
-    if(userResult.length=0){
+    if(userResult.length==0){
         user.rooms.push(room.id);
         user = await user.save();
     }

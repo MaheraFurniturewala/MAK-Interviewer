@@ -30,7 +30,7 @@ if(env.name == 'development'){
         prefix: '/css'
     }));
 }
-
+console.log(app.locals.assetPath('css/home.css'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -83,8 +83,7 @@ app.use('/', require('./routes'));
 
 io.on('connection', (socket) => {
     socket.on('join-room', (roomId, userId) => {
-        socket.join(roomId);
-        joinRoom(socket, roomId, userId);
+         joinRoom(socket, roomId, userId);
         socket.on('colab', (user_name) => {
             socket.broadcast.to(roomId).emit('colab', socket.id, user_name);
         });

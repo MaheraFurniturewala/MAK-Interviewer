@@ -33,6 +33,7 @@
  * @param module a name for the payload
  * @param payload a function to call with (require, exports, module) params
  */
+console.log("In ace.js");
 
 (function() {
 

@@ -1,0 +1,247 @@
+[33mcommit 3b78bcb0df43be12b6eba1b005ddeeeef18a27d0[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31mheroku/master[m[33m)[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Fri Oct 8 00:55:14 2021 +0530
+
+    bug fix
+
+[33mcommit 6bcdf389f9ecdadff4b4340f99a9a8b99a9fba7c[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Fri Oct 8 00:48:17 2021 +0530
+
+    bug fix
+
+[33mcommit 43913fc4ece36799565decbfb899128f01692b85[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Fri Oct 8 00:39:58 2021 +0530
+
+    bug fix
+
+[33mcommit 58155769c6e278e8578242db3abe9d9e0af56a8f[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Thu Oct 7 19:08:50 2021 +0530
+
+    bug: fix env variables
+
+[33mcommit c744ae2c6c06189ff9735a5984f725acbdbc1fe6[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Thu Oct 7 18:34:45 2021 +0530
+
+    fix
+
+[33mcommit 8ccf7cc20f524f9edc0289dbb1476a10f0d9df4b[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Thu Oct 7 18:16:41 2021 +0530
+
+    test
+
+[33mcommit edc39caefb45af648aef78d1e806fa5e14a6a822[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Thu Oct 7 18:08:06 2021 +0530
+
+    bug; fix engines in package.json
+
+[33mcommit 9f40f9c1ff8a42caf04ed39666ba4d280fdcc1e4[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Thu Oct 7 17:58:26 2021 +0530
+
+    bug; fix script in package.json
+
+[33mcommit e5c5bef8766b8135f597fa42375cd0bc3b725aba[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Thu Oct 7 17:51:11 2021 +0530
+
+    add to .gitignore
+
+[33mcommit 1f60182bfe2326024aebabc79348cd6f88000422[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Thu Oct 7 16:13:01 2021 +0530
+
+    add engines
+
+[33mcommit 3f529a22d7a3cd083c74a40372313f5719f99665[m
+Merge: 611972e 608f1e3
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Thu Oct 7 15:12:41 2021 +0530
+
+    Merge pull request #8 from Avinash-Singh-G/master
+    
+    Create README.md
+
+[33mcommit 608f1e3d8e92601dd932277a6d4d5cf3b53238c4[m
+Author: Avinash <74002584+Avinash-Singh-G@users.noreply.github.com>
+Date:   Thu Oct 7 15:11:07 2021 +0530
+
+    Create README.md
+
+[33mcommit 611972ef269581a486674860c84770ddb8ba7ed1[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Thu Oct 7 14:50:07 2021 +0530
+
+    add assetPath to views
+
+[33mcommit 0903867edfc8807d0c027328e9a95020d0ea67b0[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Thu Oct 7 13:14:31 2021 +0530
+
+    fix bug
+
+[33mcommit 9a939d349723ce3548912846fde1acd597e08290[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Wed Oct 6 23:45:00 2021 +0530
+
+    add helper function
+
+[33mcommit ad517ee0772e12c2b7d06efb2dadb10e0aa0ec1b[m[33m ([m[1;33mtag: node.js[m[33m)[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Mon Oct 4 20:19:32 2021 +0530
+
+    compress assets and create manifest
+
+[33mcommit 16e7f0482e222ff79c64f4fdcb786616fe2fafb2[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Mon Oct 4 13:14:07 2021 +0530
+
+    add gulp libraries - cli,sass,cssnano,rev
+
+[33mcommit f781651a593ea51737f9ea5c557b19aae341a776[m
+Author: Mahera Furniturewala <maherafurniturewala1111@gmail.com>
+Date:   Mon Oct 4 01:13:29 2021 +0530
+
+    add logger(morgan) and rfs
+
+[33mcommit 4057ca282803ec0ba61ec33d7198f37834b661b8[m
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Sun Oct 3 21:45:37 2021 +0530
+
+    add logger(morgan) and rfs
+
+[33mcommit bf7e8d6b652d8050fd5c5bc60a4c058e5488eb59[m
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Sun Oct 3 21:19:07 2021 +0530
+
+    add environment variables and production scripts
+
+[33mcommit 1f9cf25d4856acd2e1062122d19aaafc54dfa0c1[m
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Fri Oct 1 17:50:30 2021 +0530
+
+    display message
+
+[33mcommit 8aa419a0b830000d08432a2084caf016ba753eed[m
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Fri Oct 1 17:41:10 2021 +0530
+
+    message persisted in db
+
+[33mcommit be72d7eb815c051bf21318987f8931729b683173[m
+Merge: 3f050d1 f4e9f0a
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Fri Oct 1 16:44:07 2021 +0530
+
+    Merge pull request #7 from MaheraFurniturewala/dependabot/npm_and_yarn/passport-oauth2-1.6.1
+    
+    Bump passport-oauth2 from 1.6.0 to 1.6.1
+
+[33mcommit f4e9f0aeddb2b3e01eb09d124062354f0b0cead4[m
+Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+Date:   Fri Oct 1 11:12:37 2021 +0000
+
+    Bump passport-oauth2 from 1.6.0 to 1.6.1
+    
+    Bumps [passport-oauth2](https://github.com/jaredhanson/passport-oauth2) from 1.6.0 to 1.6.1.
+    - [Release notes](https://github.com/jaredhanson/passport-oauth2/releases)
+    - [Changelog](https://github.com/jaredhanson/passport-oauth2/blob/master/CHANGELOG.md)
+    - [Commits](https://github.com/jaredhanson/passport-oauth2/compare/v1.6.0...v1.6.1)
+    
+    ---
+    updated-dependencies:
+    - dependency-name: passport-oauth2
+      dependency-type: indirect
+    ...
+    
+    Signed-off-by: dependabot[bot] <support@github.com>
+
+[33mcommit 3f050d1ced56ba3c10a64be38685e8890a1844dd[m
+Merge: 9985cb3 d9aa948
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Fri Oct 1 16:41:30 2021 +0530
+
+    add chat models, controllers
+
+[33mcommit 9985cb327d27185ad04a0c4d711bec033093f18d[m
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Fri Oct 1 16:36:33 2021 +0530
+
+    add message schema
+
+[33mcommit d9aa948a228bf14829c7ac6d5880b0ac950ebccb[m
+Merge: 110fe0f 5670a30
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Thu Sep 30 09:40:17 2021 +0530
+
+    Merge pull request #6 from Avinash-Singh-G/patch-7
+    
+    Update dashboard.ejs
+
+[33mcommit 5670a306f08600e99cf346ed196b801cd13db521[m
+Author: Avinash <74002584+Avinash-Singh-G@users.noreply.github.com>
+Date:   Wed Sep 29 19:57:56 2021 +0530
+
+    Update dashboard.ejs
+
+[33mcommit 110fe0ff2c04680e9280476eff2ffb5615dfce79[m
+Merge: 9213422 d0e46cc
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Wed Sep 29 19:38:02 2021 +0530
+
+    Merge pull request #5 from Avinash-Singh-G/patch-6
+    
+    Update home.scss
+
+[33mcommit d0e46ccdbe91d8f8f078ef144515129ba7d7a68c[m
+Author: Avinash <74002584+Avinash-Singh-G@users.noreply.github.com>
+Date:   Wed Sep 29 17:51:40 2021 +0530
+
+    Update home.scss
+
+[33mcommit 92134227ad8c8db341c0adbd84f05caf2168d166[m
+Merge: 855af09 659d6ad
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Wed Sep 29 15:48:48 2021 +0530
+
+    Merge pull request #3 from Avinash-Singh-G/patch-4
+    
+    Update home.css
+
+[33mcommit 855af09f879f9020a86c6e8cf51d925868183680[m
+Merge: 0830153 7c79f27
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Wed Sep 29 15:47:27 2021 +0530
+
+    Merge pull request #4 from Avinash-Singh-G/patch-5
+    
+    Update dashboard.ejs
+
+[33mcommit 7c79f27ce4133c023a99f36f5c6918f1bfad3b7e[m
+Author: Avinash <74002584+Avinash-Singh-G@users.noreply.github.com>
+Date:   Wed Sep 29 13:04:58 2021 +0530
+
+    Update dashboard.ejs
+
+[33mcommit 659d6add1eb0c420cf92b32e4ae15d4bc917e0ef[m
+Author: Avinash <74002584+Avinash-Singh-G@users.noreply.github.com>
+Date:   Wed Sep 29 13:02:35 2021 +0530
+
+    Update home.css
+
+[33mcommit 0830153bc8401bb8f602c027855a93bce543ed7b[m
+Merge: d5528fa 7b9c0a4
+Author: Mahera Furniturewala <82437476+MaheraFurniturewala@users.noreply.github.com>
+Date:   Wed Sep 29 13:01:57 2021 +0530
+
+    Merge pull request #2 from Avinash-Singh-G/patch-2
+    
+    Update home.ejs
+
+[33mcommit 7b9c0a43848ab2caa648ccd664b6430d044f5c36[m
+Au

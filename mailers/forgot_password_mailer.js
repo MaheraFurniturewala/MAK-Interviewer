@@ -6,7 +6,7 @@ exports.resetPassword = (token) => {
     nodeMailer.transporter.sendMail({
        from: 'interviewermak@gmail.com',
        to: token.email,
-       subject: "Email Verification",
+       subject: "Reset Password",
        html: htmlString
     }, (err, info) => {
         if (err){

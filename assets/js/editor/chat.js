@@ -12,8 +12,6 @@ function closeNav() {
     let newMessageForm = $("#message-form");
 
     newMessageForm.submit(function (e) {
-      console.log("Message received");
-      console.log();
       e.preventDefault(newMessageForm.serialize());
 
       $.ajax({
@@ -33,17 +31,14 @@ function closeNav() {
 
   let newMessageDom = function (message) {
     return $(`<li id="message-${message._id}"
-  <p>
-                       
-                        ${message.content}
-                        <br>
-                        <small>
-                        ${message.user}
-                        </small>
-                    </p>
-          </li>`);
+      <p>                 
+        ${message.content}
+        <br>
+        <small>
+          ${message.user}
+        </small>
+        </p>
+      </li>`);
   };
   sendMessage();
 }
-
-console.log("EDITOr - CHAT");

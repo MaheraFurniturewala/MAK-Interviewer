@@ -5,7 +5,7 @@ const forgotPasswordTokens = require('../models/forgot-password-tokens');
 //mailers
 const userMailer = require('../mailers/user_signup_mailer');
 const forgotPasswordMailer = require('../mailers/forgot_password_mailer');
-//libraries
+//packages
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 
@@ -14,16 +14,13 @@ const bcrypt = require('bcrypt');
 module.exports.dashboard = function (req, res) {
     User.findById(req.params.id, function (err, user) {
         return res.render('dashboard/dashboard.ejs', {
-
             title: 'User Dashboard',
         });
-
     });
 }
 
 //rendering the sign-in form
 module.exports.signIn = function (req, res) {
-
     if (req.isAuthenticated()) {
         return res.redirect(`/users/dashboard/${req.user.id}`);
     }

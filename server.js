@@ -30,7 +30,7 @@ if(env.name == 'development'){
         prefix: '/css'
     }));
 }
-console.log(app.locals.assetPath('css/home.css'));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -38,7 +38,8 @@ app.use(logger(env.morgan.mode, env.morgan.options));
 
 app.use(express.static(env.asset_path));
 app.use(expressLayouts);
-// extract style and scripts from sub pages into the layout
+
+//------------------- extract style and scripts from sub pages into the layout -------------------
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 

@@ -3,7 +3,7 @@ const env = require('./environment');
 
 mongoose.connect(`${env.db}`,
 { 
-    useNewUrlParser: true ,
+     useNewUrlParser: true ,
      useUnifiedTopology: true,
      useCreateIndex: true
      });

@@ -45,7 +45,7 @@
     "gulp-rev": "^9.0.0",
     "gulp-sass": "^5.0.0",
     "gulp-uglify-es": "^3.0.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "mongoose": "^5.13.5",
     "morgan": "^1.10.0",
     "node-sass-middleware": "^0.11.0",
